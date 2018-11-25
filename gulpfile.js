@@ -300,12 +300,12 @@ function generateAppDesignerIndex(path) {
     var target = gulp.src(paths.src.path + '/index.html');
     // It's not necessary to read the files (will speed up things), we're only after their paths:
     var injectToInjectJsHtmlTag = gulp.src([
-        './public.built/ionic/app-configuration/js/**/*.js',
-        //'./public.built/ionic/app-configuration/js/**/*.css',  // TODO: Not sure why this is here?
-        './public.built/ionic/app-configuration/lib/md-color-picker/dist/mdColorPicker.min.css',
-        './public.built/ionic/app-configuration/lib/md-color-picker/dist/mdColorPicker.min.css',
-        './public.built/ionic/app-configuration/lib/tinycolor/dist/tinycolor-min.js', // Must come before mdColorPicker.min.js
-        './public.built/ionic/app-configuration/lib/md-color-picker/dist/mdColorPicker.min.js'
+        './src/js/**/*.js',
+        //'./src/js/**/*.css',  // TODO: Not sure why this is here?
+        './src/lib/md-color-picker/dist/mdColorPicker.min.css',
+        './src/lib/md-color-picker/dist/mdColorPicker.min.css',
+        './src/lib/tinycolor/dist/tinycolor-min.js', // Must come before mdColorPicker.min.js
+        './src/lib/md-color-picker/dist/mdColorPicker.min.js'
         //'./ionic/www/lib/ui-iconpicker/**/*.js',
         //'./ionic/www/lib/ui-iconpicker/**/*.css'
     ], {read: false});
@@ -354,11 +354,11 @@ gulp.task('copySrcToWww', [], function () {
     return copyFiles(paths.src.path + '/**/*', paths.www.path);
 });
 gulp.task('watch', function() {
-    gulp.watch('./public.built/ionic/app-configuration/**/*', ['copy']);
+    gulp.watch('./src/**/*', ['copy']);
 });
 gulp.task('copy', function() {
     if (!fs.existsSync('./ionic/www/configuration')){fs.mkdirSync('./ionic/www/configuration');}
-    gulp.src('./public.built/ionic/app-configuration/**/*')
+    gulp.src('./src/**/*')
         .pipe(gulp.dest('./ionic/www/configuration'));
 });
 gulp.task('changelog', function () {
