@@ -1,108 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c15502c1-dabd-40de-8af2-bfd50ac39cbf" name="Default" comment="" />
+    <list default="true" id="c15502c1-dabd-40de-8af2-bfd50ac39cbf" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-9255708">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="qmService.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modo/www/js/services/qmService.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="1845" column="38" lean-forward="false" selection-start-line="1845" selection-start-column="38" selection-end-line="1845" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="apps.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Modo/www/js/apps.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="109" column="124" lean-forward="true" selection-start-line="109" selection-start-column="124" selection-end-line="110" selection-end-column="120" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="configuration-index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modo/www/configuration-index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="2" column="8" lean-forward="false" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="configurationCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app-configuration/js/configurationCtrl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="72" column="56" lean-forward="false" selection-start-line="72" selection-start-column="56" selection-end-line="72" selection-end-column="56" />
-              <folding>
-                <element signature="e#680#1324#0" expanded="true" />
-                <element signature="e#1355#1539#0" expanded="true" />
-                <element signature="e#1417#1531#0" expanded="true" />
-                <element signature="e#1590#2263#0" expanded="true" />
-                <element signature="e#1670#1902#0" expanded="true" />
-                <element signature="e#2305#2518#0" expanded="true" />
-                <element signature="e#2602#2802#0" expanded="true" />
-                <element signature="e#2851#3055#0" expanded="true" />
-                <element signature="e#3147#3851#0" expanded="true" />
-                <element signature="e#4327#4663#0" expanded="true" />
-                <element signature="e#4685#4828#0" expanded="true" />
-                <element signature="e#4845#4941#0" expanded="true" />
-                <element signature="e#5017#5348#0" expanded="true" />
-                <element signature="e#5458#7494#0" expanded="true" />
-                <element signature="e#6233#7178#0" expanded="true" />
-                <element signature="e#7200#7355#0" expanded="true" />
-                <element signature="e#7372#7476#0" expanded="true" />
-                <element signature="e#7553#8821#0" expanded="true" />
-                <element signature="e#8978#11197#0" expanded="true" />
-                <element signature="e#9527#9601#0" expanded="true" />
-                <element signature="e#9636#9722#0" expanded="true" />
-                <element signature="e#9761#10303#0" expanded="true" />
-                <element signature="e#10088#10254#0" expanded="true" />
-                <element signature="e#10432#10675#0" expanded="true" />
-                <element signature="e#10684#10751#0" expanded="true" />
-                <element signature="e#10787#11191#0" expanded="true" />
-                <element signature="e#10995#11179#0" expanded="true" />
-                <element signature="e#11020#11164#0" expanded="true" />
-                <element signature="e#11269#12275#0" expanded="true" />
-                <element signature="e#11294#12004#0" expanded="true" />
-                <element signature="e#11642#11994#0" expanded="true" />
-                <element signature="e#11672#11980#0" expanded="true" />
-                <element signature="e#12029#12210#0" expanded="true" />
-                <element signature="e#12318#12601#0" expanded="true" />
-                <element signature="e#12647#12937#0" expanded="true" />
-                <element signature="e#12978#13183#0" expanded="true" />
-                <element signature="e#13229#13396#0" expanded="true" />
-                <element signature="e#13460#14060#0" expanded="true" />
-                <element signature="e#13485#13539#0" expanded="true" />
-                <element signature="e#14106#14691#0" expanded="true" />
-                <element signature="e#14750#15144#0" expanded="true" />
-                <element signature="e#14871#15070#0" expanded="true" />
-                <element signature="e#15089#15136#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="detect_focus.js" pinned="false" current-in-tab="false">
-        <entry file="mock://chrome-extension://bdakmnplckeopfghnlpocafcepegjeap/detect_focus.js">
-          <provider selected="true" editor-type-id="vmFileEditor">
-            <state />
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -125,35 +48,17 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/Modo/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app-configuration/lib/md-color-picker/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app-configuration/lib/tinycolor/node_modules" />
-  </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1440" />
-    <option name="width" value="1447" />
-    <option name="height" value="1047" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="1943" />
+    <option name="height" value="1103" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -185,24 +90,26 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Roaming/npm/node_modules/jscs" />
-    <property name="node.js.path.for.package.jscs" value="project" />
-    <property name="nodejs_interpreter_path" value="K:/Program Files (x86)/nodejs/node" />
-    <property name="node.js.detected.package.jscs" value="true" />
-    <property name="node.js.selected.package.jscs" value="C:\Users\Mike\AppData\Roaming\npm\node_modules\jscs" />
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript.Linters.JSHint" />
     <property name="javascript.nodejs.core.library.configured.version" value="6.9.2" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="" />
-    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.detected.package.jscs" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.jscs" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="" />
+    <property name="node.js.selected.package.jscs" value="C:\Users\Mike\AppData\Roaming\npm\node_modules\jscs" />
     <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript.Linters.JSHint" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -216,7 +123,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.configuration-index.html">
+  <component name="RunManager">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -244,49 +151,54 @@
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
     </configuration>
-    <configuration name="configuration-index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" nameIsGenerated="true" uri="http://localhost:63342/ionic/Modo/www/configuration-index.html" />
+    <configuration name="configuration-index.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ionic/Modo/www/configuration-index.html">
+      <method v="2" />
+    </configuration>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <created>1543175690148</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1543175690148</updated>
+    </task>
+    <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1440" y="0" width="1447" height="1047" extended-state="0" />
-    <editor active="true" />
+    <frame x="-1440" y="0" width="1447" height="882" extended-state="0" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43986636" sideWeight="0.2793177" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47327393" sideWeight="0.48454157" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43982002" sideWeight="0.12184571" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16222063" sideWeight="0.74950296" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295838" sideWeight="0.49747658" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4688196" sideWeight="0.51759064" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15245202" sideWeight="0.69716775" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09541578" sideWeight="0.7140187" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43982002" sideWeight="0.8781543" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07675906" sideWeight="0.250497" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Gulp" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17430703" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.74950296" visible="true" weight="0.16222063" />
+      <window_info id="DB Browser" order="1" weight="0.32995737" />
+      <window_info id="npm" order="2" sideWeight="0.250497" side_tool="true" weight="0.07675906" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Favorites" order="4" sideWeight="0.7140187" weight="0.09541578" />
+      <window_info id="Structure" order="5" sideWeight="0.69716775" weight="0.15245202" />
+      <window_info anchor="bottom" id="Docker" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.51759064" weight="0.4688196" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48454157" weight="0.47327393" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8781543" weight="0.43982002" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="DB Execution Console" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.2793177" side_tool="true" weight="0.43986636" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.12184571" side_tool="true" visible="true" weight="0.4386207" />
+      <window_info anchor="bottom" id="Inspection Results" order="11" sideWeight="0.49747658" weight="0.3295838" />
+      <window_info anchor="right" id="Mongo Explorer" />
+      <window_info anchor="right" id="Palette&#9;" order="0" />
+      <window_info anchor="right" id="Gulp" order="1" weight="0.17430703" />
+      <window_info anchor="right" id="Remote Host" order="2" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Commander" order="4" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="5" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="6" weight="0.25" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/Modo/node_modules/aws-sdk/scripts/services-table-generator.js" />
-      </list>
-    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -297,95 +209,19 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app-configuration/js/configurationCtrl.js</url>
           <line>76</line>
-          <properties />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app-configuration/js/configurationCtrl.js</url>
           <line>69</line>
-          <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
     </breakpoint-manager>
-    <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Modo/www/configuration-index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" column="8" lean-forward="false" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app-configuration/js/configurationCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="72" column="56" lean-forward="false" selection-start-line="72" selection-start-column="56" selection-end-line="72" selection-end-column="56" />
-          <folding>
-            <element signature="e#680#1324#0" expanded="true" />
-            <element signature="e#1355#1539#0" expanded="true" />
-            <element signature="e#1417#1531#0" expanded="true" />
-            <element signature="e#1590#2263#0" expanded="true" />
-            <element signature="e#1670#1902#0" expanded="true" />
-            <element signature="e#2305#2518#0" expanded="true" />
-            <element signature="e#2602#2802#0" expanded="true" />
-            <element signature="e#2851#3055#0" expanded="true" />
-            <element signature="e#3147#3851#0" expanded="true" />
-            <element signature="e#4327#4663#0" expanded="true" />
-            <element signature="e#4685#4828#0" expanded="true" />
-            <element signature="e#4845#4941#0" expanded="true" />
-            <element signature="e#5017#5348#0" expanded="true" />
-            <element signature="e#5458#7494#0" expanded="true" />
-            <element signature="e#6233#7178#0" expanded="true" />
-            <element signature="e#7200#7355#0" expanded="true" />
-            <element signature="e#7372#7476#0" expanded="true" />
-            <element signature="e#7553#8821#0" expanded="true" />
-            <element signature="e#8978#11197#0" expanded="true" />
-            <element signature="e#9527#9601#0" expanded="true" />
-            <element signature="e#9636#9722#0" expanded="true" />
-            <element signature="e#9761#10303#0" expanded="true" />
-            <element signature="e#10088#10254#0" expanded="true" />
-            <element signature="e#10432#10675#0" expanded="true" />
-            <element signature="e#10684#10751#0" expanded="true" />
-            <element signature="e#10787#11191#0" expanded="true" />
-            <element signature="e#10995#11179#0" expanded="true" />
-            <element signature="e#11020#11164#0" expanded="true" />
-            <element signature="e#11269#12275#0" expanded="true" />
-            <element signature="e#11294#12004#0" expanded="true" />
-            <element signature="e#11642#11994#0" expanded="true" />
-            <element signature="e#11672#11980#0" expanded="true" />
-            <element signature="e#12029#12210#0" expanded="true" />
-            <element signature="e#12318#12601#0" expanded="true" />
-            <element signature="e#12647#12937#0" expanded="true" />
-            <element signature="e#12978#13183#0" expanded="true" />
-            <element signature="e#13229#13396#0" expanded="true" />
-            <element signature="e#13460#14060#0" expanded="true" />
-            <element signature="e#13485#13539#0" expanded="true" />
-            <element signature="e#14106#14691#0" expanded="true" />
-            <element signature="e#14750#15144#0" expanded="true" />
-            <element signature="e#14871#15070#0" expanded="true" />
-            <element signature="e#15089#15136#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modo/www/js/services/qmService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="1845" column="38" lean-forward="false" selection-start-line="1845" selection-start-column="38" selection-end-line="1845" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modo/www/js/apps.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="109" column="124" lean-forward="true" selection-start-line="109" selection-start-column="124" selection-end-line="110" selection-end-column="120" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Modo/www/configuration-index.html" />
+    <entry file="file://$PROJECT_DIR$/app-configuration/js/configurationCtrl.js" />
+    <entry file="file://$PROJECT_DIR$/Modo/www/js/services/qmService.js" />
+    <entry file="file://$PROJECT_DIR$/Modo/www/js/apps.js" />
   </component>
 </project>

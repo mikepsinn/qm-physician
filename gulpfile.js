@@ -135,7 +135,7 @@ var qm = {
         getDoNotMinify: function(){
             return doNotMinify;
         },
-        setDoNotMinify(value){
+        setDoNotMinify: function(value){
             doNotMinify = value;
         },
         buildDebug: function () {
@@ -151,7 +151,7 @@ var qm = {
             }
             return false;
         }
-    },
+    }
 };
 var qmDB = {
     mysql: {
