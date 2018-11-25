@@ -153,49 +153,6 @@ var qm = {
         }
     }
 };
-var qmDB = {
-    mongo: {
-        dbSettings: {
-            development: {
-                host: process.env.DB_HOST || 'localhost',
-                database: process.env.DB_NAME || 'quantimodo_test',
-                user: process.env.DB_USER || 'root',
-                password: process.env.DB_PASSWORD || 'caf4a081d8e0773617886cc54b801cbec3ace4c455917c9c',
-                port: process.env.DB_PORT || '3307',
-            },
-            production: {
-                host: '169.61.123.138:27017/',
-                database: 'admin',
-                user: 'quantimodo',
-                password: 'PxS5eX8AlhSG',
-                port: '3306',
-                ssl  : {
-                    cert: fs.readFileSync(__dirname + '/docker/mysql/client/client-cert.pem'),
-                    ca : fs.readFileSync(__dirname + '/docker/mysql/conf.d/ca.pem'),
-                    key : fs.readFileSync(__dirname + '/docker/mysql/client/client-key.pem')
-                }
-            }
-        },
-        collections: {
-            connectorData: function () {
-                var collection = qmDB.mongo.db.collection('connectorData');
-                return collection;
-            }
-        },
-        initialize: function () {
-            var MongoClient = require('mongodb').MongoClient;
-            var assert = require('assert');
-            var connectionUrl = 'mongodb://quantimodo:PxS5eX8AlhSG@169.61.123.138:27017/admin';
-            var dbName = 'quantimodo';
-            MongoClient.connect(connectionUrl, function(err, client) {  // Use connect method to connect to the server
-                assert.equal(null, err);
-                console.log("Connected successfully to " + connectionUrl);
-                qmDB.mongo.db = client.db(dbName);
-                client.close();
-            });
-        }
-    }
-};
 var pathToModo = './ionic';
 var configurationIndexHtml = 'configuration-index.html';
 var configurationAppJs = 'configuration-app.js';
@@ -234,14 +191,6 @@ bugsnag.onBeforeNotify(function (notification) {
 });
 function isTruthy(value) {return (value && value !== "false");}
 var buildDebug = isTruthy(process.env.BUILD_DEBUG);
-var majorMinorVersionNumbers = '5.8.';
-function getPatchVersionNumber() {
-    var date = new Date();
-    var monthNumber = (date.getMonth() + 1).toString();
-    var dayOfMonth = ('0' + date.getDate()).slice(-2);
-    return monthNumber + dayOfMonth;
-}
-var apiVersionNumber = majorMinorVersionNumbers + getPatchVersionNumber();
 var qmLog = {
     error: function (message, object, maxCharacters) {
         object = object || {};
@@ -272,12 +221,6 @@ var qmLog = {
     },
     prettyJSONStringify: function(object) {return JSON.stringify(object, null, '\t');}
 };
-qmLog.info("API version is " + apiVersionNumber);
-try {
-    qmDB.mongo.initialize();
-} catch (e) {
-    qmLog.error("Could not initialize MongoDB because "+JSON.stringify(e));
-}
 function execute(command, callback, suppressErrors, lotsOfOutput) {
     qmLog.debug('executing ' + command);
     if(lotsOfOutput){
