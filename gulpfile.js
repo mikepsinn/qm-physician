@@ -234,12 +234,6 @@ bugsnag.onBeforeNotify(function (notification) {
 });
 function isTruthy(value) {return (value && value !== "false");}
 var buildDebug = isTruthy(process.env.BUILD_DEBUG);
-var zippedTestDbFilename = "quantimodo.zip";
-var testDbFilename = "quantimodo.sql";
-var pathToTestFixtures = "slim/tests/fixtures";
-var pathToTestDatabase = pathToTestFixtures + "/" + testDbFilename;
-var pathToZippedTestDatabase = pathToTestFixtures + "/" + zippedTestDbFilename;
-var s3UrlToTestDatabase = "";
 var majorMinorVersionNumbers = '5.8.';
 function getPatchVersionNumber() {
     var date = new Date();
@@ -332,86 +326,9 @@ function executeCommand(command, callback) {
         if(callback){callback(err);}
     });
 }
-function replaceWords(source, destination) {
-    return gulp.src(source)
-        .pipe(replace("Human API", "{{$GLOBALS['HOST_APP_SETTINGS']->appDisplayName}}"))
-        .pipe(replace("hub.humanapi.co/blog.html", "{{$GLOBALS['HOST_APP_SETTINGS']->homepageUrl}}"))
-        .pipe(replace("http://support.humanapi.co/", "http://help.quantimo.do/"))
-        .pipe(replace("Human Connect", "{{$GLOBALS['HOST_APP_SETTINGS']->appDisplayName}} Integration"))
-        .pipe(replace("human-connect", "{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}-integration"))
-        .pipe(replace("developer.humanapi.co", "{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/developer"))
-        .pipe(replace("hub.humanapi.co", "{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/docs"))
-        .pipe(replace("reference.humanapi.co", "{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/docs"))
-        .pipe(replace("humanapi.readme.io", "{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/docs"))
-        .pipe(replace("subdomain&quot;:&quot;humanapi", "subdomain&quot;:&quot;quantimo"))
-        .pipe(replace("dash.readme.io/project/humanapi/v1.0/docs", "{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/docs"))
-        .pipe(replace("dash.readme.io/project/humanapi/v1.1/docs", "{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/docs"))
-        .pipe(replace("hub.humanapi.html", "{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/docs"))
-        .pipe(replace("https://itunes.apple.com/us/app/human-api/id997774112?mt=8", "{{$GLOBALS['HOST_APP_SETTINGS']->additionalSettings->downloadLinks->iosApp}}"))
-        .pipe(replace("https://api.humanapi.co/v1/human", "https://{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/api/v1/user"))
-        .pipe(replace("new-human-api-app-released-on-the-apple-app-store.html", "{{$GLOBALS['HOST_APP_SETTINGS']->additionalSettings->downloadLinks->iosApp}}"))
-        .pipe(replace("https://connect.humanapi.co/connect.js", "https://{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/api/v1/integration.js"))
-        .pipe(replace("https://connect.humanapi.co/blank/hc-close", "https://{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/api/v1/window/close"))
-        .pipe(replace("https://connect.humanapi.co/blank/hc-finish", "https://{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/api/v1/connection/finish"))
-        .pipe(replace("humanId", "quantimodoUserId"))
-        .pipe(replace("human_id", "quantimodoUserId"))
-        .pipe(replace("https://user.humanapi.co/v1/connect/tokens", "https://{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/api/v1/connect/tokens"))
-        .pipe(replace("human-api-overview", "https://{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}-api-overview"))
-        .pipe(replace("https://api.humanapi.co/[version]/human", "https://{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/api/v1/user"))
-        .pipe(replace("enterprise@humanapi.co", "info@quantimo.do"))
-        .pipe(replace("HumanConnect", "{{$GLOBALS['HOST_APP_SETTINGS']->appDisplayName}}Integration"))
-        .pipe(replace("support@humanapi.co", "info@quantimo.do"))
-        .pipe(replace("https://connect.humanapi.co/assets/button/blue.png", "https://{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/qm-connect/connect.png"))
-        .pipe(replace("connect-health-data", "import-data"))
-        .pipe(replace("enterprise:::at:::humanapi.co", "info:::at:::quantimo.do"))
-        .pipe(replace("https://connect.humanapi.co/blank", "https://{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do"))
-        .pipe(replace("user.humanapi.co/v1/connect/publictokens", "{{$GLOBALS['HOST_APP_SETTINGS']->clientId}}.quantimo.do/v1/connection/publicToken"))
-        .pipe(replace("www.humanapi.co", "{{str_replace('https://', '', $GLOBALS['HOST_APP_SETTINGS']->homepageUrl}}"))
-        .pipe(replace("connecting their health data", "connecting"))
-        .pipe(replace("health data", "data"))
-        .pipe(replace("You can use ours if you want!", "Example"))
-        .pipe(replace("CLIENT_ID", "{{$clientApp->client_id}}"))
-        .pipe(replace("as-is to your server for step 2.", "to your server"))
-        .pipe(replace("Pretty neat huh? You should save them with the appropriate", "Save the credentials with the your"))
-        .pipe(replace("var options", "{{$GLOBALS['HOST_APP_SETTINGS']->appDisplayName}}Integration.options"))
-        .pipe(replace("var options", "{{$GLOBALS['HOST_APP_SETTINGS']->appDisplayName}}Integration.options"))
-        .pipe(rename(function (path) {
-            //path.dirname += "/ciao";
-            path.basename += ".blade";
-            path.basename = path.basename.replace(".blade.blade", ".blade");
-            path.extname = ".php";
-        }))
-        .pipe(gulp.dest(destination));
-}
-function uploadToS3(filePath) {
-    if(!process.env.AWS_ACCESS_KEY_ID){
-        qmLog.error("Cannot upload to S3. Please set environmental variable AWS_ACCESS_KEY_ID");
-        return;
-    }
-    if(!process.env.AWS_SECRET_ACCESS_KEY){
-        qmLog.error("Cannot upload to S3. Please set environmental variable AWS_SECRET_ACCESS_KEY");
-        return;
-    }
-    qmLog.info("Uploading " + filePath);
-    var s3 = require('gulp-s3-upload')({accessKeyId: process.env.AWS_ACCESS_KEY_ID, secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY});
-    return gulp.src([filePath]).pipe(s3({
-        Bucket: 'quantimodo',
-        ACL: 'public-read',
-        keyTransform: function(relative_filename) {
-            return s3RelativePath = 'testing/' + relative_filename;
-        }
-    }, {
-        maxRetries: 5,
-        logger: console
-    }));
-}
 function cleanFiles(filesArray) {
     qmLog.info("Cleaning " + JSON.stringify(filesArray) + '...');
     return gulp.src(filesArray, {read: false}).pipe(clean());
-}
-function cleanFolder(folderPath) {
-    qmLog.info("Cleaning " + folderPath + " folder...");
-    return gulp.src(folderPath + '/*', {read: false}).pipe(clean());
 }
 gulp.task('default', [], function (callback) {
     runSequence(
@@ -493,15 +410,6 @@ gulp.task('copyCustomLibToSrc', [], function () {
 gulp.task('copySrcToWww', [], function () {
     return copyFiles(paths.src.path + '/**/*', paths.www.path);
 });
-gulp.task('update-hostname-in-supervisor-config', [], function () {
-    var outputFolderPath = 'configs/etc/supervisor';
-    var pathToFile = outputFolderPath + '/supervisord.conf';
-    qmLog.info("Setting __HOST_NAME__ to " + process.env.HOSTNAME + " in " + pathToFile);
-    var filesToUpdate = [pathToFile];
-    return gulp.src(filesToUpdate, {base: '.'})
-        .pipe(replace("__HOST_NAME__", process.env.HOSTNAME))
-        .pipe(gulp.dest('./'));
-});
 gulp.task('watch', function() {
     gulp.watch('./public.built/ionic/app-configuration/**/*', ['copy']);
 });
@@ -577,59 +485,11 @@ gulp.task('release', function (callback) {
             callback(error);
         });
 });
-gulp.task('cleanUnzipFolder', [], function(){
-    return gulp.src("sdks-unzipped/*",
-        { read: false }).pipe(clean());
-});
-gulp.task('composerDumpAutoload', function (callback) {
-    executeCommand('cd laravel && composer dump-autoload', callback);
-});
 gulp.task('configureIonicApp', function (callback) {
     executeCommand('cd ' + pathToModo + ' && yarn install', callback);
 });
-gulp.task('composerInstallSlim', function (callback) {
-    executeCommand('cd slim & composer install --ignore-platform-reqs', callback);
-});
-gulp.task('composerInstallLaravel', function (callback) {
-    executeCommand('cd laravel & composer install --ignore-platform-reqs', callback);
-});
-gulp.task('phpunitLaravel', ['composerInstallLaravel'], function (callback) {
-    executeCommand('phpunit --stop-on-error --stop-on-failure --configuration laravel/phpunit.xml', callback);
-});
-gulp.task('composerUpdate', function (callback) {
-    executeCommand('composer update --ignore-platform-reqs', callback);
-});
-gulp.task('composerUpdateSlim', function (callback) {
-    executeCommand('cd slim & composer update --ignore-platform-reqs', callback);
-});
-gulp.task('composerUpdateLaravel', function (callback) {
-    executeCommand('cd laravel & composer update --ignore-platform-reqs', callback);
-});
-gulp.task('ionicServe', function (callback) {
-    executeCommand('cd public.built\\ionic\\Modo & ionic serve', callback);
-});
 gulp.task('bowerInstall', function (callback) {
     executeCommand('bower install --allow-root', callback);
-});
-gulp.task('cleanDocsFolder', [], function(){
-    return gulp.src("public.built/converted-docs/*",
-        { read: false }).pipe(clean());
-});
-gulp.task('cleanScreenshotsFolder', [], function(){
-    return gulp.src(paths.screenshots + "/*",
-        { read: false }).pipe(clean());
-});
-gulp.task('generateDocumentation', ['cleanDocsFolder'], function () {
-    //return gulp.src(['www/**/*']).pipe(gulp.dest('build/chrome_extension/www'));
-    var source = ['public.built/human-api-docs/http___hub.humanapi.co_docs/hub.humanapi.co/**/*.html'];
-    var destination = 'public.built/human-api-docs-converted';
-    return replaceWords(source, destination);
-});
-gulp.task('updateBladeDocs', [], function () {
-    //return gulp.src(['www/**/*']).pipe(gulp.dest('build/chrome_extension/www'));
-    var source = ['laravel/resources/views/docs/**/*'];
-    var destination = 'laravel/resources/views/docs';
-    return replaceWords(source, destination);
 });
 gulp.task('updateModulesInAppJs', [], function () {
     var filesToUpdate = [
@@ -640,173 +500,16 @@ gulp.task('updateModulesInAppJs', [], function () {
         .pipe(rename(configurationAppJs))
         .pipe(gulp.dest(paths.src.path+'/js'));
 });
-gulp.task('invert-icons', function () {
-    var jimp = require('gulp-jimp');
-    gulp.src('512/**/*').pipe(jimp({'-white': {invert: true}})).pipe(gulp.dest('./ion-icons-white/'));
-});
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
 };
-gulp.task('importTestDatabase', function () {
-    var dbUser = "root";
-    var dbPassword = "root";
-    var testDbName = (process.env.TEST_NAME) ? process.env.TEST_NAME : "quantimodo_test";
-    var util = require('util');
-    var shell = require('gulp-shell');
-    var shellCommand = util.format('mysql -u %s -p%s -e "CREATE DATABASE %s"', dbUser, dbPassword, testDbName);
-    gulp.src('').pipe(shell([shellCommand]));
-    shellCommand = util.format('mysql -u %s -p%s %s < slim/tests/fixtures/quantimodo.sql', dbUser, dbPassword, testDbName);
-    //var shellCommand = util.format('dir');
-    gulp.src('').pipe(shell([shellCommand]));
-    qmLog.info('\n\x1b[32m%s\x1b[0m', shellCommand + ' succeeded!');
-});
-gulp.task('updateTestDatabase', function (callback) {
-    executeCommand('bash /vagrant/slim/Database/transfer_new_data_from_production_to_development_database.sh', callback);
-});
-gulp.task('updateAndUploadTestDatabase', function (callback) {
-    runSequence(
-        'updateTestDatabase',
-        'zipTestDatabase',
-        'uploadTestDatabaseToS3',
-        function (error) {
-            if (error) {
-                qmLog.error(error.message);
-            } else {
-                qmLog.info('TEST DB UPLOAD FINISHED SUCCESSFULLY');
-            }
-            callback(error);
-        });
-});
-gulp.task('uploadTestDatabaseToS3', function () {
-    return uploadToS3(pathToZippedTestDatabase);
-});
-gulp.task('downloadTestDatabase', [], function(){
-    qmLog.info("Downloading " + s3UrlToTestDatabase);
-    return download(s3UrlToTestDatabase)
-        .pipe(gulp.dest(pathToTestFixtures));
-});
-gulp.task('zipTestDatabase', [], function () {
-    var zip = require('gulp-zip');
-    return gulp.src([pathToTestDatabase])
-        .pipe(zip(zippedTestDbFilename))
-        .pipe(gulp.dest(pathToTestFixtures));
-});
-var dimensions = {
-    width: 1024,
-    height: 20000
-};
-function getNightmare() {
-    var Nightmare = require('nightmare');
-    var nightmare = new Nightmare({
-        show: false,
-        width: dimensions.width,
-        height: dimensions.height
-    });
-    return nightmare;
-}
-function getDimensions(url, waitForThisSelector, callback) {
-    dimensions = getNightmare()
-        .goto(url)
-        //.wait(waitForThisSelector)
-        .wait(30000)
-        .evaluate(function() {
-            var body = document.querySelector('body');
-            console.log(JSON.stringify(body));
-            //callback();
-            return {
-                height: body.scrollHeight,
-                width:body.scrollWidth
-            }
-        })
-        .end()
-        .then(function (result) {
-            dimensions = result;
-            console.log(result);
-            takeScreenShot(url, waitForThisSelector, dimensions, callback);
-            callback(url, waitForThisSelector);
-        })
-        .catch(function (error) {
-            console.error('Search failed:', error);
-        });
-}
-function takeScreenShot(url, waitForThisSelector, dimensions, callback) {
-    console.log("Dimensions " + JSON.stringify(dimensions));
-    getNightmare()
-    //.viewport(dimensions.width, dimensions.height)
-        .goto(url)
-        //.type('#search_form_input_homepage', 'github nightmare')
-        //.click('#search_button_homepage')
-        .viewport(dimensions.width, dimensions.height)
-        .wait(waitForThisSelector)
-        .screenshot(paths.screenshots + '/study.png')
-        .pdf(paths.screenshots + '/study.pdf')
-        .html(paths.screenshots + '/study.html')
-        .end()
-        .then(function (result) {
-            console.log(result);
-            callback();
-        })
-        .catch(function (error) {
-            console.error('Search failed:', error);
-            callback();
-        });
-}
-var screenShotUrl = paths.studyBaseUrl + 'causeVariableName=Sleep%20Duration&effectVariableName=Overall%20Mood&hideMenu=true';
-gulp.task('takeScreenShot', ['cleanScreenshotsFolder'], function (callback) {
-    qmLog.info("Taking screen shot of " + screenShotUrl);
-    return takeScreenShot(screenShotUrl, '#studyCharts > div:nth-child(1) > h2', dimensions, callback);
-});
-gulp.task('getDimensions', [], function (callback) {
-    qmLog.info("Getting dimensions of " + screenShotUrl);
-    return getDimensions(screenShotUrl, '#studyCharts > div:nth-child(1) > h2', callback);
-});
-gulp.task('inlineCss', function() {
-    var inlineCss = require('gulp-inline-css');
-    return gulp.src(paths.screenshots + '/*.html')
-        .pipe(inlineCss())
-        .pipe(gulp.dest(paths.screenshots + '/inline-css/'));
-});
 function writeToFile(filePath, stringContents) {
     filePath = './' + filePath;
     qmLog.info("Writing to " + filePath);
     if(typeof stringContents !== "string"){stringContents = prettyJSONStringify(stringContents);}
     return fs.writeFileSync(filePath, stringContents);
 }
-function exportHighchart(filePath, chartOptions) {
-    var exporter = require('highcharts-export-server');
-    //Export settings
-    var exportSettings = {
-        outfile: filePath + '.svg',
-        type: 'svg',
-        options: chartOptions
-    };
-    //Set up a pool of PhantomJS workers
-    exporter.initPool();
-    //Perform an export
-    /*
-        Export settings corresponds to the available CLI arguments described
-        above.
-    */
-    exporter.export(exportSettings, function (err, res) {
-        if(err){
-            qmLog.error(err);
-            return;
-        }
-        //qmLog.info("output: " + prettyJSONStringify(res));
-        if(res.data){
-            writeToFile(filePath + '.svg', res.data);
-        }
-        //The export result is now in res.
-        //If the output is not PDF or SVG, it will be base64 encoded (res.data).
-        //If the output is a PDF or SVG, it will contain a filename (res.filename).
-        //Kill the pool when we're done with it, and exit the application
-        exporter.killPool();
-        process.exit(1);
-    });
-}
-gulp.task('exportHighchart', function() {
-});
 try {
     var Quantimodo = require('quantimodo');
     authenticateQuantiModoSdk();
@@ -828,16 +531,6 @@ function authenticateQuantiModoSdk() {
         quantimodo_oauth2.accessToken = '42ff4170172357b7312bb127fb58d5ea464943c1';
     }
 }
-gulp.task('get-study', [], function (callback) {
-    var apiInstance = new Quantimodo.AnalyticsApi();
-    function qmApiResponseCallback(error, data, response) {
-        for (var i = 0; i < data.highcharts.length; i++) {
-            exportHighchart(data.causeVariable.id + "_" + data.effectVariable.id + "_" + data.highcharts[i].chartId, data.highcharts[i].highchartConfig);
-        }
-        callback();
-    }
-    apiInstance.getStudy({causeVariableName: "Sleep Duration", effectVariableName: "Overall Mood"}, qmApiResponseCallback);
-});
 gulp.task('minify-integration-js', [], function() {
     qmLog.info("Running minify-integration-js...");
     var minify = require('gulp-minify');
@@ -866,12 +559,6 @@ gulp.task('copy-qm-url-updater', [], function () {
     var destination = 'ionic/build/quantimodo-chrome-extension/js';
     destination = paths.src.path + '/js';
     return copyFiles('custom-lib/**/*', destination);
-});
-gulp.task('laradock-copy', [], function () {
-    gulp.src('configs/etc/nginx/ionic.location.'+qm.getReleaseStage()+'.nginx.conf')
-        .pipe(rename('ionic.location.nginx.conf'))
-        .pipe(gulp.dest('laradock/nginx'));
-    return copyFiles('configs/laradock/**/*', 'laradock');
 });
 var qmGit = {
     branchName: process.env.CIRCLE_BRANCH || process.env.BUDDYBUILD_BRANCH || process.env.TRAVIS_BRANCH || process.env.GIT_BRANCH,
@@ -929,36 +616,6 @@ var qmGit = {
     }
 };
 qmGit.outputCommitMessageAndBranch();
-gulp.task('travis-build-trigger', [], function (callback) {
-    git.clone('https://'+qmGit.accessToken+'@github.com/mikepsinn/docker-analytics-tests', function (err) {
-        if (err) {qmLog.info(err);}
-        git.pull(function (err) {
-            if (err) {qmLog.info(err);}
-            git.stash(function (err) {
-                if (err) {qmLog.info(err);}
-                git.add(function (err) {
-                    if (err) {qmLog.info(err);}
-                });
-            });
-        });
-        callback();
-    });
-});
-var release = require('gulp-github-release');
-gulp.task('release-jenkins-backup', function(){
-    gulp.src('./jenkins-backup.zip')
-        .pipe(release({
-            token: process.env.GITHUB_ACCESS_TOKEN,                     // or you can set an env var called GITHUB_TOKEN instead
-            owner: 'mikepsinn',                    // if missing, it will be extracted from manifest (the repository.url field)
-            repo: 'jenkins-backup',            // if missing, it will be extracted from manifest (the repository.url field)
-            tag: 'v'+apiVersionNumber,                      // if missing, the version will be extracted from manifest and prepended by a 'v'
-            name: 'publish-release v'+apiVersionNumber,     // if missing, it will be the same as the tag
-            notes: 'very good!',                // if missing it will be left undefined
-            draft: false,                       // if missing it's false
-            prerelease: false,                  // if missing it's false
-            manifest: require('./package.json') // package.json from which default values will be extracted if they're missing
-        }));
-});
 gulp.task('merge-dialogflow-export', function() {
     var agent = {entities: {}, intents: {}};
     var agentsPath = 'slim/data/agents';
@@ -1006,35 +663,4 @@ gulp.task('make-sure-scripts-got-deployed', function(callback) {
 });
 gulp.task('chcp-config-and-deploy-web', [], function (callback) {
     qm.chcp.loginBuildAndDeploy(callback);
-});
-gulp.task('sync-public-built-to-www', [], function () {
-    var dirSync = require('gulp-directory-sync');
-    return gulp.src( '' )
-        .pipe(dirSync( 'public.built', 'www', { printSummary: true, ignore: function( dir, file ) {
-            // *.idea,*,*.,/,*.,/,,/,/,/,/,/,/,/,/,/
-            var directoriesToExclude = [
-                '.git',
-                'build',
-                'codegen',
-                'node_modules',
-                'phantomjs',
-                'platforms',
-                'plugins',
-                'sdk-repos',
-                'sdks-unzipped',
-                'sdks-zipped',
-                'wp',
-                'xhgui',
-            ];
-            var extensionsToExclude = [
-                'env',
-                'git',
-                'map',
-                'php',
-                'popup-combined'
-            ];
-
-            return file === '.svn';
-        }}))
-        .on('error', gutil.log);
 });
