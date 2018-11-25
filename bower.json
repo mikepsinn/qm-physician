@@ -1,0 +1,10 @@
+{
+  "name": "qm-docker",
+  "private": false,
+  "devDependencies": {},
+  "dependencies": {
+    "ui-iconpicker": "git+https://github.com/pihomeserver/pihomeconnect-iconpicker",
+    "md-color-picker": "^0.2.6",
+    "quantimodo": "5.9.70219"
+  }
+}
