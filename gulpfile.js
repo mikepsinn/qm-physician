@@ -58,8 +58,8 @@ var qm = {
         }
     },
     paths: {
-        minifiedScripts: "public.built/ionic/Modo/www",
-        //minifiedScripts: "public.built/ionic/Modo/www/scripts"
+        minifiedScripts: "ionic/www",
+        //minifiedScripts: "ionic/www/scripts"
     },
     chcp: {
         /** @namespace process.env.S3_PREFIX */
@@ -154,36 +154,6 @@ var qm = {
     }
 };
 var qmDB = {
-    mysql: {
-        production: function () {
-            var knex = require('knex')({
-                client: 'mysql',
-                connection: qmDB.mysql.dbSettings.production
-            });
-            return knex;
-        },
-        dbSettings: {
-            development: {
-                host: process.env.DB_HOST || 'localhost',
-                database: process.env.DB_NAME || 'quantimodo_test',
-                user: process.env.DB_USER || 'root',
-                password: process.env.DB_PASSWORD || 'caf4a081d8e0773617886cc54b801cbec3ace4c455917c9c',
-                port: process.env.DB_PORT || '3307',
-            },
-            production: {
-                host: '169.61.123.130',
-                database: 'quantimodo',
-                user: 'qm_production',
-                password: 'caf4a081d8e0773617886cc54b801cbec3ace4c455917c9c',
-                port: '3308',
-                ssl  : {
-                    cert: fs.readFileSync(__dirname + '/docker/mysql/client/client-cert.pem'),
-                    ca : fs.readFileSync(__dirname + '/docker/mysql/conf.d/ca.pem'),
-                    key : fs.readFileSync(__dirname + '/docker/mysql/client/client-key.pem')
-                }
-            }
-        }
-    },
     mongo: {
         dbSettings: {
             development: {
@@ -226,7 +196,7 @@ var qmDB = {
         }
     }
 };
-var pathToModo = './public.built/ionic/Modo';
+var pathToModo = './ionic';
 var configurationIndexHtml = 'configuration-index.html';
 var configurationAppJs = 'configuration-app.js';
 var paths = {
@@ -466,7 +436,7 @@ gulp.task('createSuccessFile', function () {
 });
 gulp.task('deleteSuccessFile', function () {return cleanFiles(['success']);});
 function generateAppDesignerIndex(path) {
-    console.log("MAKE SURE TO RUN cd public.built/ionic/Modo && yarn install BEFORE RUNNING THIS TASK!");
+    console.log("MAKE SURE TO RUN cd ionic && yarn install BEFORE RUNNING THIS TASK!");
     var target = gulp.src(paths.src.path + '/index.html');
     // It's not necessary to read the files (will speed up things), we're only after their paths:
     var injectToInjectJsHtmlTag = gulp.src([
@@ -476,8 +446,8 @@ function generateAppDesignerIndex(path) {
         './public.built/ionic/app-configuration/lib/md-color-picker/dist/mdColorPicker.min.css',
         './public.built/ionic/app-configuration/lib/tinycolor/dist/tinycolor-min.js', // Must come before mdColorPicker.min.js
         './public.built/ionic/app-configuration/lib/md-color-picker/dist/mdColorPicker.min.js'
-        //'./public.built/ionic/Modo/www/lib/ui-iconpicker/**/*.js',
-        //'./public.built/ionic/Modo/www/lib/ui-iconpicker/**/*.css'
+        //'./ionic/www/lib/ui-iconpicker/**/*.js',
+        //'./ionic/www/lib/ui-iconpicker/**/*.css'
     ], {read: false});
     console.log("Saving " + configurationIndexHtml + " to " + path + '...');
     var inject = require('gulp-inject');
@@ -536,9 +506,9 @@ gulp.task('watch', function() {
     gulp.watch('./public.built/ionic/app-configuration/**/*', ['copy']);
 });
 gulp.task('copy', function() {
-    if (!fs.existsSync('./public.built/ionic/Modo/www/configuration')){fs.mkdirSync('./public.built/ionic/Modo/www/configuration');}
+    if (!fs.existsSync('./ionic/www/configuration')){fs.mkdirSync('./ionic/www/configuration');}
     gulp.src('./public.built/ionic/app-configuration/**/*')
-        .pipe(gulp.dest('./public.built/ionic/Modo/www/configuration'));
+        .pipe(gulp.dest('./ionic/www/configuration'));
 });
 gulp.task('changelog', function () {
     var conventionalChangelog = require('gulp-conventional-changelog');
@@ -893,7 +863,7 @@ gulp.task('minify-qm-url-updater', [], function(callback) {
     ], callback);
 });
 gulp.task('copy-qm-url-updater', [], function () {
-    var destination = 'public.built/ionic/Modo/build/quantimodo-chrome-extension/js';
+    var destination = 'ionic/build/quantimodo-chrome-extension/js';
     destination = paths.src.path + '/js';
     return copyFiles('custom-lib/**/*', destination);
 });
@@ -923,7 +893,7 @@ var qmGit = {
         }
     },
     accessToken: process.env.GITHUB_ACCESS_TOKEN,
-    getCommitMessage(callback){
+    getCommitMessage: function(callback){
         var commandForGit = 'git log -1 HEAD --pretty=format:%s';
         execute(commandForGit, function (error, output) {
             var commitMessage = output.trim();
@@ -988,100 +958,6 @@ gulp.task('release-jenkins-backup', function(){
             prerelease: false,                  // if missing it's false
             manifest: require('./package.json') // package.json from which default values will be extracted if they're missing
         }));
-});
-var connectorHelper = {
-    getConnectorId: function(connectorName){
-        var map = {mint: 80};
-        return map[connectorName];
-    },
-    getCredentials: function (connection, callback) {
-        var db = qmDB.mysql.production;
-        // db().select('user_id', 'connector_id', 'attr_key', db().raw("AES_DECRYPT(attr_value, 'AhfwDFPQfaZPQr00sFhfw3FrTw30EakM6zpF16d3') as credentialValue"))
-        //     .from('credentials').where({connector_id: connection.connector_id, user_id: connection.user_id}).timeout(10000)
-        //     db().raw("select user_id, connector_id, attr_key, AES_DECRYPT(attr_value, 'AhfwDFPQfaZPQr00sFhfw3FrTw30EakM6zpF16d3') as credentialValue from credentials "+
-        //         " where user_id="+connection.user_id+" and connector_id="+connection.connector_id)
-        db().raw("select `attr_key` as `attrKey`, attr_value as attrValue, ``.`created_at` as `createdAt`, ``.`updated_at` as `updatedAt` from `credentials` where `user_id` = 230 and `connector_id` = 80")
-            .then(function (credentialsArray) {
-                credentialsArray = credentialsArray[0];
-                function convertCryptKey(strKey) {
-                    var newKey = new Buffer([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-                    var bufStrKey = new Buffer(strKey);
-                    for (var i = 0; i < bufStrKey.length; i++) {
-                        newKey[i % 16] ^= bufStrKey[i];
-                    }
-                    return newKey;
-                }
-                function decrypt(cyphertext) {
-                    var crypto = require("crypto");
-                    // although this function could run on the client - you should not store 'My very secret key' on the client, nor pass it
-                    // via API call. You should decrypt on the server.
-                    var dc = crypto.createDecipheriv('aes-128-ecb', convertCryptKey('AhfwDFPQfaZPQr00sFhfw3FrTw30EakM6zpF16d3'), '');
-                    var decrypted = dc.update(cyphertext, 'hex', 'utf8') + dc.final('utf8');
-                    return decrypted;
-                }
-                var credentialsObject = {};
-                for (var i = 0; i < credentialsArray.length; i++) {
-                    var defaultClientElement = credentialsArray[i];
-                    credentialsObject[defaultClientElement.attrKey] = decrypt(defaultClientElement.attrValue);
-                }
-                callback(credentialsObject);
-            });
-    },
-    updateWaitingConnections: function (connectorName, callback){
-        var connectorId = connectorHelper.getConnectorId(connectorName);
-        qmLog.info("envs", process.env);
-        var itemsProcessed = 0;
-        qmDB.mysql.production().select().from('connections').where({connector_id: connectorId}).timeout(10000).then(function (connections) {
-            console.log(connections);
-            for (var i = 0; i < connections.length; i++) {
-                var connection = connections[i];
-                connectorHelper.getCredentials(connection, function (credentialsObject) {
-                    itemsProcessed++;
-                    if(itemsProcessed === connections.length) {
-                        connectorHelper.updateConnector[connectorName](credentialsObject, connection, callback);
-                    } else {
-                        connectorHelper.updateConnector[connectorName](credentialsObject, connection);
-                    }
-                });
-            }
-        });
-    },
-    updateConnector: {
-        mint: function (credentials, connection, callback){
-            qmLog.info("Getting credentials from mint...");
-            require('pepper-mint')(credentials.username, credentials.password, credentials.ius_session || null, credentials.thx_guid || null)
-                .then(function(mint) {
-                    qmLog.info("Got credentials from mint!");
-                    credentials.ius_session = mint.sessionCookies.ius_session;
-                    credentials.thx_guid = mint.sessionCookies.thx_guid;
-                    writeToFile('/tmp/credentials_connector_'+credentials.connector_id+'_user_'+credentials.user_id+".json", credentials);
-                    var startDate = new Date();
-                    startDate.setMonth(startDate.getMonth() - 3);
-                    if(connection.last_successful_updated_at){startDate = new Date(connection.last_successful_updated_at)}
-                    qmLog.info("Importing transactions from mint...");
-                    mint.getTransactions({startDate: startDate, endDate: new Date()}).then(function(transactions){
-                        qmLog.info("Got " + transactions.length + " transactions from mint!");
-                        var dataFilePath = './tmp/data_mint_user_id_'+connection.user_id+".json";
-                        var dataFile = {
-                            spreadsheetData: transactions,
-                            credentials: credentials,
-                            userId: connection.user_id,
-                            connectorId: connection.user_id
-                        };
-                        qmDB.mongo.collections.connectorData().insert(dataFile, function (err, result) {
-                            if(err){qmLog.error(err)}
-                            qmLog.info("Inserted "+transactions.length+" transactions");
-                            if(callback){callback(result);}
-                        })
-                        //writeToFile(dataFilePath, dataFile);
-                        //executeCommand("export TASK_NAME=ImportMeasurementSpreadsheets && export DATA_FILE_PATH=" + dataFilePath +" && bash ./slim/Tasks/phpunit/run_task.sh");
-                    });
-                });
-        }
-    }
-};
-gulp.task('update-mint-connections', function(callback) {
-    connectorHelper.updateWaitingConnections("mint", callback);
 });
 gulp.task('merge-dialogflow-export', function() {
     var agent = {entities: {}, intents: {}};
