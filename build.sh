@@ -28,8 +28,8 @@ fi
 echo "======================"
 echo "Building App Designer"
 echo "======================"
-cd ${BUILDER} && CURRENT_GIT_HASH=$(git rev-parse HEAD) && lastCommitBuilt=`cat ${BUILDER}/log/qm-docker-last-commit-built`
-echo "Previous QM-DOCKER commit built ${lastCommitBuilt} and CURRENT_GIT_HASH ${CURRENT_GIT_HASH}"
+cd ${BUILDER} && CURRENT_GIT_HASH=$(git rev-parse HEAD) && lastCommitBuilt=`cat ${BUILDER}/log/builder-last-commit-built`
+echo "Previous builder commit built ${lastCommitBuilt} and CURRENT_GIT_HASH ${CURRENT_GIT_HASH}"
 if [[ -z "$lastCommitBuilt" || ${CURRENT_GIT_HASH} != ${lastCommitBuilt} || ${REBUILD} == "1" ]]
     then
         echo "==== Running npm install silently for App Designer ===="
@@ -37,9 +37,9 @@ if [[ -z "$lastCommitBuilt" || ${CURRENT_GIT_HASH} != ${lastCommitBuilt} || ${RE
         echo "==== RUNNING bower install --allow-root for App Designer ===="
         bower install --allow-root --quiet
         gulp default
-        test -e success || echo "===== QM-DOCKER BUILD FAILURE: Success file was not deleted so build did not complete! ====="
+        test -e success || echo "===== builder BUILD FAILURE: Success file was not deleted so build did not complete! ====="
         test -e success || exit 1
-        echo ${CURRENT_GIT_HASH} > ${BUILDER}/log/qm-docker-last-commit-built
+        echo ${CURRENT_GIT_HASH} > ${BUILDER}/log/builder-last-commit-built
     else
         echo "Already built ${CURRENT_GIT_HASH}";
 fi
