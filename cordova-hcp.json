@@ -1,0 +1,8 @@
+{
+	"name": "QuantiModo",
+	"s3bucket": "qm-dev.quantimo.do",
+	"s3region": "us-east-1",
+	"s3prefix": "public.built/api/",
+	"update": "start",
+	"content_url": "https://qm-dev.quantimo.do.s3.amazonaws.com/public.built/api/"
+}
