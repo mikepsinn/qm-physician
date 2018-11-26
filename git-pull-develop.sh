@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
-source slim/scripts/env_add_last_modified_and_git_commit.sh
-
 stash() {
   # check if we have un-committed changes to stash
   git status --porcelain | grep "^." >/dev/null;
-  if [ $? -eq 0 ]
+  if [[ $? -eq 0 ]]
   then
     if git stash save -u "git-update on `date`";
     then
@@ -14,7 +12,7 @@ stash() {
 }
 unstash() {
   # check if we have un-committed change to restore from the stash
-  if [ ${stash} -eq 1 ]
+  if [[ ${stash} -eq 1 ]]
   then
     git stash pop;
   fi
@@ -24,7 +22,7 @@ git -c diff.mnemonicprefix=false -c core.quotepath=false fetch --prune origin
 stash=0;
 stash;
 branch=`git branch | grep "\*" | cut -d " " -f 2-9`;
-if [ "$branch" == "develop" ]
+if [[ "$branch" == "develop" ]]
 then
   git pull origin develop;
 else
