@@ -566,7 +566,7 @@ gulp.task('make-sure-scripts-got-deployed', function(callback) {
         if(fileName.indexOf('.html') === -1){continue;}
         var path = "/ionic/Modo/www/" +fileName;
         var url = host + path;
-        urls.push();
+        urls.push(url);
     }
     qm.fileHelper.checkIfUrlExists(urls, callback);
 });
