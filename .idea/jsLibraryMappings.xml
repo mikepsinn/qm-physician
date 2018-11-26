@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{Node.js Core}" />
-    <file url="file://$PROJECT_DIR$/Modo" libraries="{ionic/Modo/node_modules}" />
-    <file url="file://$PROJECT_DIR$/app-configuration/lib/md-color-picker" libraries="{ionic/app-configuration/lib/md-color-picker/node_modules}" />
-    <file url="file://$PROJECT_DIR$/app-configuration/lib/tinycolor" libraries="{ionic/app-configuration/lib/tinycolor/node_modules}" />
-    <file url="PROJECT" libraries="{angular-DefinitelyTyped, angular-material-DefinitelyTyped, ionic-DefinitelyTyped, ionic/Modo/node_modules, ionic/app-configuration/lib/md-color-picker/node_modules, ionic/app-configuration/lib/tinycolor/node_modules, quantimodo}" />
+    <file url="PROJECT" libraries="{@types/chrome, @types/gulp, firebase, firebase-auth, firebase-database, firebase-firestore, firebase-functions, firebase-messaging}" />
+    <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>

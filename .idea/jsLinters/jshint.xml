@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="JSHintConfiguration" version="2.9.5" use-config-file="true">
+  <component name="JSHintConfiguration" version="2.9.5" use-config-file="false">
     <option asi="false" />
     <option bitwise="true" />
     <option boss="false" />
@@ -45,7 +45,7 @@
     <option newcap="false" />
     <option noarg="true" />
     <option nocomma="false" />
-    <option node="false" />
+    <option node="true" />
     <option noempty="true" />
     <option nomen="false" />
     <option nonbsp="false" />
@@ -67,7 +67,7 @@
     <option shelljs="false" />
     <option singleGroups="false" />
     <option smarttabs="false" />
-    <option strict="true" />
+    <option strict="false" />
     <option sub="false" />
     <option supernew="false" />
     <option trailing="false" />

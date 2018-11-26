@@ -14,23 +14,9 @@ var qm = {
         },
         isStaging: function(){
             return qm.getReleaseStage() === "staging";
-        },
-        isLocal: function(){
-            return qm.getReleaseStage() === "local";
-        },
+        }
     },
     fileHelper: {
-        loopThroughFilesInFolder: function(folderPath, callback, finalCallback){
-            var files = fs.readdirSync(folderPath);
-            for (var i = 0; i < files.length; i++) {
-                var fileName = files[i];
-                if(i === files.length -1){
-                    callback(fileName, finalCallback);
-                } else {
-                    callback(fileName);
-                }
-            }
-        },
         checkIfUrlExists: function (urls, callback) {
             var download2 = require('gulp-download2');
             return download2(urls, {
@@ -54,7 +40,7 @@ var qm = {
             return fs.writeFile(filePath, stringContents, callback);
         },
         outputFileContents: function(path){
-            qmLog.info(path+": "+fs.readFileSync(path))
+            qmLog.info(path+": "+fs.readFileSync(path));
         }
     },
     paths: {
@@ -130,27 +116,6 @@ var qm = {
             if(process.env.PWD && process.env.PWD.indexOf('workspace/DEPLOY-production') !== -1){return "quantimodo.quantimo.do";}
             return "qm-dev.quantimo.do";
         }
-    },
-    buildSettings: {
-        getDoNotMinify: function(){
-            return doNotMinify;
-        },
-        setDoNotMinify: function(value){
-            doNotMinify = value;
-        },
-        buildDebug: function () {
-            if(isTruthy(process.env.BUILD_ANDROID_RELEASE)){return false;}
-            if(isTruthy(process.env.BUILD_DEBUG) || isTruthy(process.env.DEBUG_BUILD)){
-                qmLog.info("BUILD_DEBUG or DEBUG_BUILD is true");
-                return true;
-            }
-            if(buildingFor.chrome()){return false;}  // Otherwise we don't minify and extension is huge
-            if(!qmGit.isMaster()){
-                qmLog.info("Not on master so buildDebug is true");
-                return true;
-            }
-            return false;
-        }
     }
 };
 var pathToModo = './ionic';
@@ -224,9 +189,10 @@ var qmLog = {
 function execute(command, callback, suppressErrors, lotsOfOutput) {
     qmLog.debug('executing ' + command);
     if(lotsOfOutput){
-        var arguments = command.split(" ");
-        var program = arguments.shift();
-        var ps = spawn(program, arguments);
+        var args = command.split(" ");
+        var program = args.shift();
+        var spawn = require('child_process').spawn; // For commands with lots of output resulting in stdout maxBuffer exceeded error
+        var ps = spawn(program, args);
         ps.on('exit', function (code, signal) {
             qmLog.info(command + ' exited with ' + 'code '+ code + ' and signal '+ signal);
             if(callback){callback();}
@@ -463,8 +429,8 @@ var defaultClient;
 function authenticateQuantiModoSdk() {
     defaultClient = Quantimodo.ApiClient.instance;
     if(process.env.APP_HOST_NAME){defaultClient.basePath = process.env.APP_HOST_NAME + '/api';}
-    var quantimodo_oauth2 = defaultClient.authentications['quantimodo_oauth2'];
-    var clientId = defaultClient.authentications['client_id'];
+    var quantimodo_oauth2 = defaultClient.authentications.quantimodo_oauth2;
+    var clientId = defaultClient.authentications.client_id;
     clientId.apiKey = "testClient";
     if(process.env.TEST_ACCESS_TOKEN){
         qmLog.info("Using process.env.QUANTIMODO_ACCESS_TOKEN");
@@ -486,7 +452,7 @@ gulp.task('minify-integration-js', [], function() {
             exclude: ['tasks'],
             ignoreFiles: ['.combo.js', '-min.js']
         }))
-        .pipe(gulp.dest('public.built/qm-connect'))
+        .pipe(gulp.dest('public.built/qm-connect'));
 });
 gulp.task('minify-qm-url-updater', [], function(callback) {
     qmLog.info("Running minify-qm-url-updater...");
@@ -500,16 +466,16 @@ gulp.task('minify-qm-url-updater', [], function(callback) {
 });
 gulp.task('copy-qm-url-updater', [], function () {
     var destination = 'ionic/build/quantimodo-chrome-extension/js';
-    destination = paths.src.path + '/js';
+    //destination = paths.src.path + '/js';
     return copyFiles('custom-lib/**/*', destination);
 });
 var qmGit = {
     branchName: process.env.CIRCLE_BRANCH || process.env.BUDDYBUILD_BRANCH || process.env.TRAVIS_BRANCH || process.env.GIT_BRANCH,
     isMaster: function () {
-        return qmGit.branchName === "master"
+        return qmGit.branchName === "master";
     },
     isDevelop: function () {
-        return qmGit.branchName === "develop"
+        return qmGit.branchName === "develop";
     },
     isFeature: function () {
         return qmGit.branchName.indexOf("feature") !== -1;
@@ -517,7 +483,7 @@ var qmGit = {
     getCurrentGitCommitSha: function () {
         if(process.env.SOURCE_VERSION){return process.env.SOURCE_VERSION;}
         try {
-            return require('child_process').execSync('git rev-parse HEAD').toString().trim()
+            return require('child_process').execSync('git rev-parse HEAD').toString().trim();
         } catch (error) {
             qmLog.info(error);
         }
@@ -535,8 +501,8 @@ var qmGit = {
         qmGit.getCommitMessage(function (commitMessage) {
             qmGit.setBranchName(function (branchName) {
                 qmLog.info("===== Building " + commitMessage + " on "+ branchName + " =====");
-            })
-        })
+            });
+        });
     },
     setBranchName: function(callback) {
         function setBranch(branch, callback) {
@@ -600,7 +566,7 @@ gulp.task('make-sure-scripts-got-deployed', function(callback) {
         if(fileName.indexOf('.html') === -1){continue;}
         var path = "/ionic/Modo/www/" +fileName;
         var url = host + path;
-        urls.push()
+        urls.push();
     }
     qm.fileHelper.checkIfUrlExists(urls, callback);
 });
