@@ -1,3 +1,4 @@
 src/lib/
 node_modules/
 .idea/workspace.xml
+.idea/ionic.iml
