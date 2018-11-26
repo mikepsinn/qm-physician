@@ -5228,9 +5228,9 @@ qs@~2.3.1:
   version "2.3.3"
   resolved "http://registry.npmjs.org/qs/-/qs-2.3.3.tgz#e9e85adbe75da0bbe4c8e0476a086290f863b404"
 
-quantimodo@5.9.70219:
-  version "5.9.70219"
-  resolved "https://registry.yarnpkg.com/quantimodo/-/quantimodo-5.9.70219.tgz#5fa550dbc365d2bd192e6bbba8ec1c71714a6d8d"
+quantimodo@5.9.81814:
+  version "5.9.81814"
+  resolved "https://registry.yarnpkg.com/quantimodo/-/quantimodo-5.9.81814.tgz#59e76a8cf5813e4910d614029a57dc7ca6e3f610"
   dependencies:
     superagent "3.8.3"
 
