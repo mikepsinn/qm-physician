@@ -2,11 +2,11 @@
   <library name="ionic-lib" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/ionic/src/lib" />
+        <item url="file://$PROJECT_DIR$/src/ionic/src" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/ionic/src/lib" />
+      <root url="file://$PROJECT_DIR$/src/ionic/src" />
     </CLASSES>
     <SOURCES />
   </library>

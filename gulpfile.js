@@ -110,7 +110,7 @@ var configurationAppJs = 'configuration-app.js';
 var paths = {
     src: {
         path: pathToModo + '/src',
-        appDesignerIndexHtml: pathToModo + '/src/' + configurationIndexHtml,
+        appDesignerIndexHtml: pathToModo + '/src/index.html' + configurationIndexHtml,
         configurationAppJs: pathToModo + '/src/js/' + configurationAppJs
     },
     www: {
@@ -245,7 +245,8 @@ gulp.task('createSuccessFile', function () {
     return fs.writeFileSync('success');
 });
 gulp.task('deleteSuccessFile', function () {return cleanFiles(['success']);});
-function generateAppDesignerIndex(path) {
+gulp.task('app-designer-index', [], function () {
+    var path = 'src/index.html';
     console.log("MAKE SURE TO RUN cd ionic && yarn install BEFORE RUNNING THIS TASK!");
     var target = gulp.src(paths.src.path + '/index.html');
     // It's not necessary to read the files (will speed up things), we're only after their paths:
@@ -269,10 +270,6 @@ function generateAppDesignerIndex(path) {
         .pipe(replace('js/app.js', 'js/' + configurationAppJs))
         .pipe(rename(configurationIndexHtml))
         .pipe(gulp.dest(path));
-}
-gulp.task('app-designer-index', [], function () {
-    return generateAppDesignerIndex(paths.src.path);
-    //return generateAppDesignerIndex(paths.www.path);
 });
 gulp.task('copy-app-designer-index-to-www', [], function () {
     return copyFiles(paths.src.appDesignerIndexHtml, paths.www.path);
@@ -303,86 +300,15 @@ gulp.task('copyCustomLibToSrc', [], function () {
 gulp.task('copySrcToWww', [], function () {
     return copyFiles(paths.src.path + '/**/*', paths.www.path);
 });
-gulp.task('watch', function() {
-    gulp.watch('./src/**/*', ['copy']);
-});
-gulp.task('copy', function() {
-    if (!fs.existsSync('./ionic/www/configuration')){fs.mkdirSync('./ionic/www/configuration');}
-    gulp.src('./src/**/*')
-        .pipe(gulp.dest('./ionic/www/configuration'));
-});
-gulp.task('changelog', function () {
-    var conventionalChangelog = require('gulp-conventional-changelog');
-    return gulp.src('CHANGELOG.md', {
-        buffer: false
-    })
-        .pipe(conventionalChangelog({
-            preset: 'angular' // Or to any other commit message convention you use.
-        }))
-        .pipe(gulp.dest('./'));
-});
-gulp.task('github-release', function(done) {
-    var conventionalGithubReleaser = require('conventional-github-releaser');
-    conventionalGithubReleaser({
-        type: "oauth",
-        token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8' // change this to your own GitHub token or use an environment variable
-    }, {
-        preset: 'angular' // Or to any other commit message convention you use.
-    }, done);
-});
-gulp.task('bump-version', function () {
-    var bump = require('gulp-bump');
-// We hardcode the version change type to 'patch' but it may be a good idea to
-// use minimist (https://www.npmjs.com/package/minimist) to determine with a
-// command argument whether you are doing a 'major', 'minor' or a 'patch' change.
-    return gulp.src(['./bower.json', './package.json'])
-        .pipe(bump({type: "patch"}).on('error', gutil.log))
-        .pipe(gulp.dest('./'));
-});
-gulp.task('commit-changes', function () {
-    return gulp.src('.')
-        .pipe(git.add())
-        .pipe(git.commit('[Prerelease] Bumped version number'));
-});
-gulp.task('push-changes', function (cb) {
-    git.push('origin', 'master', cb);
-});
-gulp.task('create-new-tag', function (cb) {
-    var version = getPackageJsonVersion();
-    git.tag(version, 'Created Tag for version: ' + version, function (error) {
-        if (error) {
-            return cb(error);
-        }
-        git.push('origin', 'master', {args: '--tags'}, cb);
-    });
-    function getPackageJsonVersion () {
-        // We parse the json file instead of using require because require caches
-        // multiple calls so the version number won't be updated
-        return JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
-    }
-});
-gulp.task('release', function (callback) {
-    runSequence(
-        'bump-version',
-        'changelog',
-        'commit-changes',
-        'push-changes',
-        'create-new-tag',
-        'github-release',
-        function (error) {
-            if (error) {
-                qmLog.error(error.message);
-            } else {
-                qmLog.info('RELEASE FINISHED SUCCESSFULLY');
-            }
-            callback(error);
-        });
-});
 gulp.task('configureIonicApp', function (callback) {
-    executeCommand('cd ' + pathToModo + ' && yarn install', callback);
-});
-gulp.task('bowerInstall', function (callback) {
-    executeCommand('bower install --allow-root', callback);
+    executeCommand('cd ' + pathToModo + ' && yarn install', function(){
+        executeCommand('cd ' + pathToModo + ' && bower install', function(){
+            executeCommand('cd ' + pathToModo + ' && gulp', function(){
+                qmLog.info("Done with configureIonicApp!");
+                callback();
+            });
+        });
+    });
 });
 gulp.task('updateModulesInAppJs', [], function () {
     var filesToUpdate = [
@@ -424,35 +350,6 @@ function authenticateQuantiModoSdk() {
         quantimodo_oauth2.accessToken = '42ff4170172357b7312bb127fb58d5ea464943c1';
     }
 }
-gulp.task('minify-integration-js', [], function() {
-    qmLog.info("Running minify-integration-js...");
-    var minify = require('gulp-minify');
-    return gulp.src('public.built/qm-connect/integration.js')
-        .pipe(minify({
-            ext:{
-                src:'.js',
-                min:'.min.js'
-            },
-            exclude: ['tasks'],
-            ignoreFiles: ['.combo.js', '-min.js']
-        }))
-        .pipe(gulp.dest('public.built/qm-connect'));
-});
-gulp.task('minify-qm-url-updater', [], function(callback) {
-    qmLog.info("Running minify-qm-url-updater...");
-    var minify = require('gulp-minify');
-    var pump = require('pump');
-    pump([
-        gulp.src('custom-lib/*.js'),
-        minify(),  // uglify doesn't work
-        gulp.dest('public.built/dist')
-    ], callback);
-});
-gulp.task('copy-qm-url-updater', [], function () {
-    var destination = 'ionic/build/quantimodo-chrome-extension/js';
-    //destination = paths.src.path + '/js';
-    return copyFiles('custom-lib/**/*', destination);
-});
 var qmGit = {
     branchName: process.env.CIRCLE_BRANCH || process.env.BUDDYBUILD_BRANCH || process.env.TRAVIS_BRANCH || process.env.GIT_BRANCH,
     isMaster: function () {
@@ -509,38 +406,3 @@ var qmGit = {
     }
 };
 qmGit.outputCommitMessageAndBranch();
-gulp.task('merge-dialogflow-export', function() {
-    var agent = {entities: {}, intents: {}};
-    var agentsPath = 'slim/data/agents';
-    var agentPath = agentsPath + '/Dr-Modo';
-    var entitiesPath = agentPath + '/entities';
-    var entityFiles = fs.readdirSync(entitiesPath);
-    for (var i = 0; i < entityFiles.length; i++) {
-        var entityFileName = entityFiles[i];
-        if(entityFileName.indexOf('entries') !== -1){continue;}
-        var entityName = entityFileName.replace('.json', '');
-        var entityPath = entitiesPath+ '/' + entityFileName;
-        agent.entities[entityName] = JSON.parse(fs.readFileSync(entityPath));
-        var entriesPath = entitiesPath+'/'+entityName+'_entries_en.json';
-        agent.entities[entityName].entries = JSON.parse(fs.readFileSync(entriesPath));
-    }
-    var intentsPath = agentPath + '/intents';
-    var intentFiles = fs.readdirSync(intentsPath);
-    for (i = 0; i < intentFiles.length; i++) {
-        var intentFileName = intentFiles[i];
-        if(intentFileName.indexOf('usersays') !== -1){continue;}
-        var intentName = intentFileName.replace('.json', '');
-        var intentPath = intentsPath+ '/' + intentFileName;
-        agent.intents[intentName] = JSON.parse(fs.readFileSync(intentPath));
-        var usersaysPath = intentsPath+'/'+intentName+'_usersays_en.json';
-        try {
-            agent.intents[intentName].usersays = JSON.parse(fs.readFileSync(usersaysPath));
-        } catch (e) {
-            qmLog.info(e.message);
-        }
-    }
-    return writeToFile(agentsPath+'/dr-modo-agent.json', agent);
-});
-gulp.task('chcp-config-and-deploy-web', [], function (callback) {
-    qm.chcp.loginBuildAndDeploy(callback);
-});
