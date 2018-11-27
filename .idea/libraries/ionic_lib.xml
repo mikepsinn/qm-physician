@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="ionic-lib" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/ionic/src/lib" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/ionic/src/lib" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
