@@ -208,6 +208,7 @@ gulp.task('index', [], function () {
     var target = gulp.src(pathToModo+'/src/index.html');
     // It's not necessary to read the files (will speed up things), we're only after their paths:
     var injectToInjectJsHtmlTag = gulp.src([
+        '!./src/js/app.js',
         './src/js/**/*.js',
         './src/lib/md-color-picker/dist/mdColorPicker.min.css',
         './src/lib/md-color-picker/dist/mdColorPicker.min.css',
@@ -223,8 +224,9 @@ gulp.task('index', [], function () {
         .pipe(replace('src="data', 'src="ionic/src/data'))
         .pipe(replace('src="js', 'src="ionic/src/js'))
         .pipe(replace('<script src="cordova.js"></script>', ''))
-        .pipe(replace('<script src="ionic/src/js/app.js"></script>', ''))
+        .pipe(replace('ionic/src/js/app.js', 'js/app.js'))
         .pipe(replace('src="/src/', 'src="'))
+        .pipe(replace('href="/src/', 'href="'))
         .pipe(gulp.dest('./src'));
 });
 gulp.task('buildIonic', function (callback) {
@@ -244,5 +246,6 @@ gulp.task('appJs', [], function () {
     var replace = require('./src/ionic/node_modules/gulp-string-replace');
     return gulp.src(filesToUpdate)
         .pipe(replace("'ionic',", "'ionic', 'mdColorPicker',"))
+        .pipe(replace("qm.appMode.isBuilder", "true || qm.appMode.isBuilder")) // For some reason we can't replace parenthesis?
         .pipe(gulp.dest('./src/js'));
 });

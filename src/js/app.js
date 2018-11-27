@@ -129,7 +129,7 @@ angular.module('starter',
              //, $opbeatProvider
     ) {
     //$opbeatProvider.config({orgId: '10d58117acb546c08a2cae66d650480d', appId: 'fc62a74505'});
-    window.designMode = (window.location.href.indexOf('configuration-index.html') !== -1);
+    window.designMode = true || qm.appMode.isBuilder();
     if(qm.urlHelper.getParam(qm.items.apiUrl)){qm.storage.setItem(qm.items.apiUrl, "https://" + qm.urlHelper.getParam(qm.items.apiUrl));}
     function setupGoogleAnalytics() {
         var analyticsOptions = {tracker: 'UA-39222734-25', trackEvent: true};  // Note:  This will be replaced by qm.getAppSettings().additionalSettings.googleAnalyticsTrackingIds.endUserApps in qmService.getUserAndSetupGoogleAnalytics
@@ -198,7 +198,7 @@ angular.module('starter',
        $stateProvider.state(state.name, state);
     });
     function setFallbackRoute() {
-        if(qm.appMode.isBuilder()){
+        if(true || qm.appMode.isBuilder()){
             $urlRouterProvider.otherwise('/app/configuration');
         } else if (!qm.storage.getItem(qm.items.introSeen)) {
             $urlRouterProvider.otherwise('/app/intro');
