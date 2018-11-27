@@ -38,6 +38,17 @@ var qm = {
             qmLog.info("Writing to " + filePath);
             if(typeof stringContents !== "string"){stringContents = qm.stringHelper.prettyJSONStringify(stringContents);}
             return fs.writeFileSync(filePath, stringContents);
+        },
+        copyFiles: function(sourceFiles, destinationPath, excludedFolder) {
+            console.log("Copying " + sourceFiles + " to " + destinationPath);
+            var srcArray = [sourceFiles];
+            if(excludedFolder){
+                console.log("Excluding " + excludedFolder + " from copy.. ");
+                srcArray.push('!' + excludedFolder);
+                srcArray.push('!' + excludedFolder + '/**');
+            }
+            return gulp.src(srcArray)
+                .pipe(gulp.dest(destinationPath));
         }
     },
     stringHelper: {
@@ -189,9 +200,10 @@ qmGit.outputCommitMessageAndBranch();
 gulp.task('default', [], function (callback) {
     runSequence(
         'deleteSuccessFile',
-        'buildIonic',
+        //'buildIonic',
         'appJs',
         'index',
+        'copyTemplates',
         'createSuccessFile',
         function (error) {
             if (error) {qmLog.error(error.message);} else {qmLog.info('Gulp build of app builder site finished successfully!');}
@@ -248,4 +260,7 @@ gulp.task('appJs', [], function () {
         .pipe(replace("'ionic',", "'ionic', 'mdColorPicker',"))
         .pipe(replace("qm.appMode.isBuilder", "true || qm.appMode.isBuilder")) // For some reason we can't replace parenthesis?
         .pipe(gulp.dest('./src/js'));
+});
+gulp.task('copyTemplates', [], function () {
+    return qm.fileHelper.copyFiles('src/ionic/src/templates/**/*', 'src/templates');
 });

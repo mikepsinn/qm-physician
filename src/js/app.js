@@ -195,7 +195,10 @@ angular.module('starter',
     qm.staticData.states.forEach(function(state){
         if(state.name === ''){return;}
         if(state.name === 'app'){state.resolve = config_resolver;}
-       $stateProvider.state(state.name, state);
+        var isBuilderState = state.views && state.views.menuContent.templateUrl.indexOf('configuration') !== -1;
+        var isBuilderMode = true || qm.appMode.isBuilder();
+        if(isBuilderState && !isBuilderMode){return;}
+        $stateProvider.state(state.name, state);
     });
     function setFallbackRoute() {
         if(true || qm.appMode.isBuilder()){
