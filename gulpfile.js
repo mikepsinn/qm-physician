@@ -17,20 +17,6 @@ var qm = {
         }
     },
     fileHelper: {
-        checkIfUrlExists: function (urls, callback) {
-            var download2 = require('gulp-download2');
-            return download2(urls, {
-                errorCallback: function (code) {
-                    if (code === 404) {
-                        console.error('404 for '+this.uri);
-                        process.exit(1);
-                    } else if (code === 500) {
-                        console.error('Fatal exception :(');
-                        process.exit(1);
-                    }
-                }
-            }).pipe(gulp.dest('./log'));
-        },
         writeToFileWithCallback: function(filePath, stringContents, callback) {
             if(!stringContents){
                 throw filePath + " stringContents not provided to writeToFileWithCallback";
@@ -118,7 +104,7 @@ var qm = {
         }
     }
 };
-var pathToModo = './ionic';
+var pathToModo = './src/ionic';
 var configurationIndexHtml = 'configuration-index.html';
 var configurationAppJs = 'configuration-app.js';
 var paths = {
@@ -132,18 +118,16 @@ var paths = {
         appDesignerIndexHtml: pathToModo + '/www/' + configurationIndexHtml,
         configurationAppJs: pathToModo + '/www/js/' + configurationAppJs
     },
-    studyBaseUrl: 'https://utopia.quantimo.do:4470/ionic/Modo/src/#/app/study?',
-    screenshots: 'public.built/tmp',
     chcpLogin: '.chcplogin'
 };
-var bugsnag = require("bugsnag");
-var clean = require('gulp-rimraf');
-var git = require('gulp-git');
+var bugsnag = require("./src/ionic/node_modules/bugsnag");
+var clean = require('./src/ionic/node_modules/gulp-rimraf');
+var git = require('./src/ionic/node_modules/gulp-git');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var rename = require('gulp-rename');
-var replace = require('gulp-string-replace');
-var runSequence = require('run-sequence');
+var replace = require('./src/ionic/node_modules/gulp-string-replace');
+var runSequence = require('./src/ionic/node_modules/run-sequence');
 bugsnag.register("ae7bc49d1285848342342bb5c321a2cf");
 process.on('unhandledRejection', function (err) {
     console.error("Unhandled rejection: " + (err && err.stack || err));
@@ -556,19 +540,6 @@ gulp.task('merge-dialogflow-export', function() {
         }
     }
     return writeToFile(agentsPath+'/dr-modo-agent.json', agent);
-});
-gulp.task('make-sure-scripts-got-deployed', function(callback) {
-    var urls = [];
-    var host = "https://quantimodo.quantimo.do";
-    var files = fs.readdirSync(qm.paths.minifiedScripts);
-    for (var i = 0; i < files.length; i++) {
-        var fileName = files[i];
-        if(fileName.indexOf('.html') === -1){continue;}
-        var path = "/ionic/Modo/www/" +fileName;
-        var url = host + path;
-        urls.push(url);
-    }
-    qm.fileHelper.checkIfUrlExists(urls, callback);
 });
 gulp.task('chcp-config-and-deploy-web', [], function (callback) {
     qm.chcp.loginBuildAndDeploy(callback);
