@@ -199,10 +199,10 @@ gulp.task('default', [], function (callback) {
         });
 });
 gulp.task('createSuccessFile', function () {
-    qm.fileHelper.writeToFile('lastCommitBuilt', qmGit.getCurrentGitCommitSha());
-    return fs.writeFileSync('success');
+    qm.fileHelper.writeToFile('log/lastCommitBuilt', qmGit.getCurrentGitCommitSha());
+    return fs.writeFileSync('log/success');
 });
-gulp.task('deleteSuccessFile', function () {return qm.fileHelper.cleanFiles(['success']);});
+gulp.task('deleteSuccessFile', function () {return qm.fileHelper.cleanFiles(['log/success']);});
 gulp.task('index', [], function () {
     console.log("MAKE SURE TO RUN cd ionic && yarn install BEFORE RUNNING THIS TASK!");
     var target = gulp.src(pathToModo+'/src/index.html');
@@ -223,7 +223,9 @@ gulp.task('index', [], function () {
         .pipe(replace('src="data', 'src="ionic/src/data'))
         .pipe(replace('src="js', 'src="ionic/src/js'))
         .pipe(replace('<script src="cordova.js"></script>', ''))
-        .pipe(gulp.dest('src/index.html'));
+        .pipe(replace('<script src="ionic/src/js/app.js"></script>', ''))
+        .pipe(replace('src="/src/', 'src="'))
+        .pipe(gulp.dest('./src'));
 });
 gulp.task('buildIonic', function (callback) {
     execute('cd ' + pathToModo + ' && yarn install', function(){
@@ -240,7 +242,7 @@ gulp.task('appJs', [], function () {
         pathToModo+'/src/js/app.js'
     ];
     var replace = require('./src/ionic/node_modules/gulp-string-replace');
-    return gulp.src(filesToUpdate, {base: '.'})
+    return gulp.src(filesToUpdate)
         .pipe(replace("'ionic',", "'ionic', 'mdColorPicker',"))
-        .pipe(gulp.dest('src/js'));
+        .pipe(gulp.dest('./src/js'));
 });
