@@ -204,6 +204,7 @@ gulp.task('default', [], function (callback) {
         'appJs',
         'index',
         'copyTemplates',
+        'copyImages',
         'createSuccessFile',
         function (error) {
             if (error) {qmLog.error(error.message);} else {qmLog.info('Gulp build of app builder site finished successfully!');}
@@ -263,4 +264,7 @@ gulp.task('appJs', [], function () {
 });
 gulp.task('copyTemplates', [], function () {
     return qm.fileHelper.copyFiles('src/ionic/src/templates/**/*', 'src/templates');
+});
+gulp.task('copyImages', [], function () {
+    return qm.fileHelper.copyFiles('src/ionic/src/img/**/*', 'src/img');
 });
