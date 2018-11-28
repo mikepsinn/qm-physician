@@ -4,3 +4,4 @@ node_modules/
 .idea/ionic.iml
 src/templates/
 log/
+src/js/app.js
