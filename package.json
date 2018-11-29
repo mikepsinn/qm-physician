@@ -15,7 +15,7 @@
   "dependencies": {
     "conventional-github-releaser": "latest",
     "gulp": "^3.9.1",
-    "gulp-bump": "^2.5.0",
+    "gulp-bump": "^3.0.0",
     "gulp-conventional-changelog": "latest",
     "gulp-inject": "^4.2.0",
     "gulp-minify": "^2.1.0",
