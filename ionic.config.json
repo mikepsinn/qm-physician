@@ -3,5 +3,12 @@
   "api_key":"7262cd5d6ace6ceb35304c7ddafefac98391666a2145fb97",
   "dev_push":false,
   "documentRoot": "src",
-  "watchPatterns": ["src/**/*", "!ionic/src/lib/**/*", "!src/lib/**/*"]
+  "watchPatterns": [
+    "!src/ionic/node_modules/**/*",
+    "!src/ionic/platforms/**/*",
+    "!src/ionic/plugins/**/*",
+    "!src/ionic/src/lib/**/*",
+    "!src/lib/**/*",
+    "src/**/*"
+  ]
 }
