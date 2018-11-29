@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/src/ionic/dist" />
       <excludeFolder url="file://$MODULE_DIR$/src/ionic/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/src/ionic/plugins/cordova-plugin-crosswalk-webview/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/src/ionic/www" />
