@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="builder" type="JavascriptDebugType" engineId="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" uri="http://localhost:63342/builder/src/index.html">
+    <mapping url="http://localhost:63342/builder" local-file="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>

@@ -39,7 +39,7 @@ angular.module('starter').controller('ConfigurationCtrl', function( $state, $sco
     });
     function setPopOutUrl(){
         var query = '?clientId=' + getClientId() + '&apiUrl=' + qm.api.getApiUrlWithoutProtocol() + '&quantimodoAccessToken=' + qm.getUser().accessToken;
-        var url = '/ionic/Modo/www/configuration-index.html#/app/configuration' + query;
+        var url = 'https://builder.quantimo.do/#/app/configuration' + query;
         if(!qm.windowHelper.isIframe()){url = '/ionic/Modo/www/index.html#/app/intro' + query;}
         qmService.rootScope.setProperty('popOutUrl', url);
     }
@@ -286,8 +286,10 @@ angular.module('starter').controller('ConfigurationCtrl', function( $state, $sco
         self.selectedItemChange = selectedItemChange;
         self.searchTextChange   = searchTextChange;
         self.title = dataToPass.title;
+        self.minLength = 0;
         self.helpText = dataToPass.helpText;
         self.placeholder = dataToPass.placeholder;
+        self.doNotCreateNewVariables = true;
         self.cancel = function() {
             self.items = null;
             $mdDialog.cancel();
@@ -319,7 +321,7 @@ angular.module('starter').controller('ConfigurationCtrl', function( $state, $sco
          * Build `ionIcons` list of key/value pairs
          */
         function loadAll(ionIcons) {
-            if(!ionIcons){ionIcons = configurationService.getIonIcons(dataToPass.requestParams);}
+            if(!ionIcons){ionIcons = configurationService.getIonIcons();}
             if(!ionIcons || !ionIcons[0]){ return []; }
             return ionIcons.map( function (ionIcon) {
                 return {
@@ -531,7 +533,7 @@ angular.module('starter').controller('ConfigurationCtrl', function( $state, $sco
     $scope.openNewAppModalPopup = function(ev) {
         $mdDialog.show({
             controller: DialogController,
-            templateUrl: '../../app-configuration/templates/new-app-fragment.html',
+            templateUrl: 'builder-templates/new-app-fragment.html',
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose:true,

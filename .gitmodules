@@ -1,3 +1,3 @@
-[submodule "ionic"]
-	path = ionic
+[submodule "src/ionic"]
+	path = src/ionic
 	url = https://github.com/QuantiModo/quantimodo-android-chrome-ios-web-app.git

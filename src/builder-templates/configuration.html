@@ -47,36 +47,36 @@
                     <md-tabs ng-if="!patientUser" md-dynamic-height md-border-bottom>
                         <md-tab label="Links">
                             <md-content class="md-padding">
-                                <!--<div ng-include="'../../app-configuration/templates/app-design-list-fragment.html'"></div>-->
-                                <div ng-include="'../../app-configuration/templates/app-links.html'"></div>
-                                <div ng-if="appSettings.appStatus.betaDownloadLinks.androidRelease" ng-include="'../../app-configuration/templates/builds-card.html'"></div>
+                                <!--<div ng-include="'builder-templates/app-design-list-fragment.html'"></div>-->
+                                <div ng-include="'builder-templates/app-links.html'"></div>
+                                <div ng-if="appSettings.appStatus.betaDownloadLinks.androidRelease" ng-include="'builder-templates/builds-card.html'"></div>
                             </md-content>
                         </md-tab>
                         <md-tab label="Design">
                             <md-content class="md-padding">
-                                <!--<div ng-include="'../../app-configuration/templates/app-design-list-fragment.html'"></div>-->
-                                <div ng-include="'../../app-configuration/templates/app-design-tabs-fragment.html'"></div>
+                                <!--<div ng-include="'builder-templates/app-design-list-fragment.html'"></div>-->
+                                <div ng-include="'builder-templates/app-design-tabs-fragment.html'"></div>
                             </md-content>
                         </md-tab>
                         <md-tab label="Settings">
                             <md-content class="md-padding">
-                                <div ng-include="'../../app-configuration/templates/additional-settings-fragment.html'"></div>
+                                <div ng-include="'builder-templates/additional-settings-fragment.html'"></div>
                             </md-content>
                         </md-tab>
                         <md-tab label="Builds">
-                            <div ng-include="'../../app-configuration/templates/builds-tab.html'"></div>
+                            <div ng-include="'builder-templates/builds-tab.html'"></div>
                         </md-tab>
                         <md-tab label="Collaborators">
-                            <div ng-include="'../../app-configuration/templates/lists/collaborator-list.html'"></div>
+                            <div ng-include="'builder-templates/lists/collaborator-list.html'"></div>
                         </md-tab>
                         <md-tab label="Users" ng-click="loadUserList()">
-                            <div ng-include="'../../app-configuration/templates/lists/user-list.html'"></div>
+                            <div ng-include="'builder-templates/lists/user-list.html'"></div>
                         </md-tab>
                         <md-tab label="Other Apps">
-                            <div ng-include="'../../app-configuration/templates/app-list-fragment.html'"></div>
+                            <div ng-include="'builder-templates/app-list-fragment.html'"></div>
                         </md-tab>
                         <md-tab label="Revisions" ng-click="">
-                            <div ng-include="'../../app-configuration/templates/revision-list-fragment.html'"></div>
+                            <div ng-include="'builder-templates/revision-list-fragment.html'"></div>
                         </md-tab>
                     </md-tabs>
                 </md-content>
