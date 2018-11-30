@@ -274,6 +274,8 @@ gulp.task('copy-src-to-www', [], function () {
     return gulp.src([
         '!src/ionic/www',
         '!src/ionic/node_modules',
+        '!src/ionic/www/**',
+        '!src/ionic/node_modules/**',
         'src/**/*'
     ]).pipe(gulp.dest('www'));
 });
