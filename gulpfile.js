@@ -200,7 +200,7 @@ qmGit.outputCommitMessageAndBranch();
 gulp.task('default', [], function (callback) {
     runSequence(
         'deleteSuccessFile',
-        //'buildIonic',
+        'buildIonic',
         'appJs',
         'index',
         'copyTemplates',
