@@ -234,6 +234,7 @@ gulp.task('index', [], function () {
     var replace = require('./src/ionic/node_modules/gulp-string-replace');
     return target.pipe(inject(injectToInjectJsHtmlTag))
         .pipe(replace('href="css', 'href="ionic/src/css'))
+        .pipe(replace('href="img', 'href="ionic/src/img'))
         .pipe(replace('src="custom-lib', 'src="ionic/src/custom-lib'))
         .pipe(replace('src="lib', 'src="ionic/src/lib'))
         .pipe(replace('src="data', 'src="ionic/src/data'))
