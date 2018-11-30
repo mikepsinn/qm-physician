@@ -1266,7 +1266,10 @@ angular.module('starter').factory('configurationService', function($http, $q, $r
                 qmService.post('api/v1/appSettings', [], appSettings, function(response){
                     //qmService.processAndSaveAppSettings(response.appSettings, successHandler);  // We'll over-write changes while posting
                     qmService.hideLoader();
-                }, errorHandler);
+                }, function (userErrorMessage) {
+                    qmService.showMaterialAlert("Could Not Save", userErrorMessage, ev);
+                    if(errorHandler){errorHandler(userErrorMessage);}
+                });
             }, 100);
         }
         function noCallback() {qmLog.info("Canceled save")}

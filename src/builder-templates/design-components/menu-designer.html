@@ -10,7 +10,7 @@
 <div layout="column">
     <md-content flex layout layout-align="center">
         <div layout-gt-sm flex flex-gt-sm="100" layout="row">
-            <div style="max-width: 300px;" flex>
+            <div id="menu-preview" style="max-width: 400px; min-width: 350px;" flex>
                 <md-card>
                     <md-card-content>
                         <ion-list id="menu-list">
@@ -37,7 +37,7 @@
                     </md-card-content>
                 </md-card>
             </div>
-            <div flex>
+            <div id="menu-item-editor" flex>
                 <div layout="column" layout-padding ng-cloak ng-if="appSettingObjectToEdit && appSettingObjectToEdit.icon">
                     <md-card>
                         <md-card-header>
@@ -50,6 +50,9 @@
                                 <label>Title</label>
                                 <input name="title" ng-model="appSettingObjectToEdit.title">
                             </md-input-container>
+                            <md-button class="md-fab md-avatar" aria-label="{{appSettingObjectToEdit.icon | ionIconDisplayName}}" ng-click="selectIonIcon($event, appSettingObjectToEdit)">
+                                <md-icon style="font-size: 20px;" md-font-icon="{{appSettingObjectToEdit.icon}}" class="{{appSettingObjectToEdit.icon}}"></md-icon>
+                            </md-button>
                             <div ng-if="!appSettingObjectToEdit.subMenu">
                                 <md-input-container id="target-state-selector">
                                     <label>Target State</label>
@@ -57,9 +60,6 @@
                                         <md-option ng-value="option.name" ng-repeat="option in stateList">{{option.name | camelCaseToTitleCase}}</md-option>
                                     </md-select>
                                 </md-input-container>
-                                <md-button class="md-fab md-avatar" aria-label="{{appSettingObjectToEdit.icon | ionIconDisplayName}}" ng-click="selectIonIcon($event, appSettingObjectToEdit)">
-                                    <md-icon style="font-size: 20px;" md-font-icon="{{appSettingObjectToEdit.icon}}" class="{{appSettingObjectToEdit.icon}}"></md-icon>
-                                </md-button>
                                 <div ng-if="appSettingObjectToEdit.params && appSettingObjectToEdit.params.variableCategoryName">
                                     <label>Variable Category</label>
                                     <md-select ng-model="appSettingObjectToEdit.params.variableCategoryName" ng-change="updateHrefInMenuItem(appSettingObjectToEdit)">
