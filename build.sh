@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
-export BUILDER=`dirname ${SCRIPT_PATH}` && export IONIC=${BUILDER}/ionic
+export BUILDER=`dirname ${SCRIPT_PATH}` && export IONIC=${BUILDER}/src/ionic
 echo "======================="
 echo "Building Ionic Web App"
 echo "======================="
