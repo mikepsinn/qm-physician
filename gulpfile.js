@@ -206,6 +206,8 @@ gulp.task('default', [], function (callback) {
         'copyTemplates',
         'copyImages',
         'createSuccessFile',
+        //'clean-es5-ext',  Doesn't work
+        'copy-src-to-www',
         function (error) {
             if (error) {qmLog.error(error.message);} else {qmLog.info('Gulp build of app builder site finished successfully!');}
             callback(error);
@@ -267,4 +269,18 @@ gulp.task('copyTemplates', [], function () {
 });
 gulp.task('copyImages', [], function () {
     return qm.fileHelper.copyFiles('src/ionic/src/img/**/*', 'src/img');
+});
+gulp.task('copy-src-to-www', [], function () {
+    return gulp.src([
+        '!src/ionic/www',
+        '!src/ionic/node_modules',
+        '!src/ionic/www/**',
+        '!src/ionic/node_modules/**',
+        'src/**/*'
+    ]).pipe(gulp.dest('www'));
+});
+gulp.task('clean-es5-ext', [], function () {
+    qmLog.info("Dealing with Invalid filename ionic/node_modules/es5-ext/test/string/#/plain-replace.js...");
+    //return gulp.src('./**/*.js', { read: false }).pipe(rimraf());
+    return qm.fileHelper.cleanFiles(['./src/ionic/node_modules/es5-ext/test/**/*'])
 });
