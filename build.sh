@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
-export BUILDER=`dirname ${SCRIPT_PATH}` && export IONIC=${BUILDER}/ionic
+export BUILDER=`dirname ${SCRIPT_PATH}` && export IONIC=${BUILDER}/src/ionic
 echo "======================="
 echo "Building Ionic Web App"
 echo "======================="
-cd ${BUILDER} && CURRENT_GIT_HASH=`git rev-parse @:./ionic` && lastCommitBuilt=`cat ${BUILDER}/log/ionic-last-commit-built`
+cd ${BUILDER} && CURRENT_GIT_HASH=`git rev-parse @:./src/ionic` && lastCommitBuilt=`cat ${BUILDER}/log/ionic-last-commit-built`
 echo "Previous IONIC commit built ${lastCommitBuilt} and CURRENT_GIT_HASH ${CURRENT_GIT_HASH}"
 if [[ -z "$lastCommitBuilt" || ${CURRENT_GIT_HASH} != ${lastCommitBuilt} || ${REBUILD} == "1" ]]
     then
