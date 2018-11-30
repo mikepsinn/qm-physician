@@ -206,7 +206,8 @@ gulp.task('default', [], function (callback) {
         'copyTemplates',
         'copyImages',
         'createSuccessFile',
-        'clean-es5-ext',
+        //'clean-es5-ext',  Doesn't work
+        'copy-src-to-www',
         function (error) {
             if (error) {qmLog.error(error.message);} else {qmLog.info('Gulp build of app builder site finished successfully!');}
             callback(error);
