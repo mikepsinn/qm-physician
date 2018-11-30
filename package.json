@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "bower install --allow-root --quiet && cd src/ionic && yarn install && bower install --allow-root --quiet",
+    "postinstall": "cd src/ionic && yarn install",
     "heroku-prebuild": "echo This runs before Heroku installs your dependencies.",
     "heroku-postbuild": "echo Done installing package.json dependencies && bower install --allow-root --quiet && gulp default"
   },
