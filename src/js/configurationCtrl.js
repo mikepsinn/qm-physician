@@ -286,8 +286,10 @@ angular.module('starter').controller('ConfigurationCtrl', function( $state, $sco
         self.selectedItemChange = selectedItemChange;
         self.searchTextChange   = searchTextChange;
         self.title = dataToPass.title;
+        self.minLength = 0;
         self.helpText = dataToPass.helpText;
         self.placeholder = dataToPass.placeholder;
+        self.doNotCreateNewVariables = true;
         self.cancel = function() {
             self.items = null;
             $mdDialog.cancel();
@@ -319,7 +321,7 @@ angular.module('starter').controller('ConfigurationCtrl', function( $state, $sco
          * Build `ionIcons` list of key/value pairs
          */
         function loadAll(ionIcons) {
-            if(!ionIcons){ionIcons = configurationService.getIonIcons(dataToPass.requestParams);}
+            if(!ionIcons){ionIcons = configurationService.getIonIcons();}
             if(!ionIcons || !ionIcons[0]){ return []; }
             return ionIcons.map( function (ionIcon) {
                 return {

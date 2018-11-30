@@ -16,21 +16,43 @@
                         <ion-list id="menu-list">
                             <div ng-repeat="menuItem in appSettings.appDesign.menu.active" style="cursor: pointer;">
                                 <ion-item id="menu-item-{{menuItem.id + '-design'}}">
-                            <span ng-click="closeMenuIfNeeded(menuItem)">
-                                <i ng-if="menuItem.showSubMenu && menuItem.subMenu && menuItem.subMenu.length" class="ion-chevron-down">&nbsp; {{menuItem.title}}</i>
-                                <i ng-if="!menuItem.showSubMenu || !menuItem.subMenu || !menuItem.subMenu.length" class="{{menuItem.icon}}">&nbsp; {{menuItem.title}}</i>
-                            </span>
-                                    &nbsp&nbsp<i ng-click="openEditAppSettingsModal('menu', menuItem)" ><i class="icon ion-edit"></i></i>
-                                    &nbsp&nbsp<i ng-click="addAppComponentElement('menu', menuItem)" class="icon ion-ios-copy-outline" ></i>
-                                    &nbsp&nbsp<i ng-click="deleteAppComponentElement('menu', menuItem)" class="icon ion-trash-a" ></i>
-                                    &nbsp&nbsp<i ng-click="menu.addSubMenuItem(menuItem)" class="icon ion-plus" ></i>
+                                    <span ng-click="closeMenuIfNeeded(menuItem)">
+                                        <i ng-if="menuItem.showSubMenu && menuItem.subMenu && menuItem.subMenu.length" class="ion-chevron-down">&nbsp; {{menuItem.title}}</i>
+                                        <i ng-if="!menuItem.showSubMenu || !menuItem.subMenu || !menuItem.subMenu.length" class="{{menuItem.icon}}">&nbsp; {{menuItem.title}}</i>
+                                    </span>
+                                    &nbsp&nbsp
+                                    <i ng-click="openEditAppSettingsModal('menu', menuItem)" class="icon ion-edit">
+                                        <md-tooltip>Edit Menu Item</md-tooltip>
+                                    </i>
+                                    &nbsp&nbsp
+                                    <i ng-click="addAppComponentElement('menu', menuItem)" class="icon ion-ios-copy-outline" >
+                                        <md-tooltip>Duplicate Menu Item</md-tooltip>
+                                    </i>
+                                    &nbsp&nbsp
+                                    <i ng-click="deleteAppComponentElement('menu', menuItem)" class="icon ion-trash-a" >
+                                        <md-tooltip>Delete Menu Item</md-tooltip>
+                                    </i>
+                                    &nbsp&nbsp
+                                    <i ng-click="menu.addSubMenuItem(menuItem)" class="icon ion-plus" >
+                                        <md-tooltip>Add Sub-Menu Item</md-tooltip>
+                                    </i>
                                 </ion-item>
-                                <ion-item ng-repeat="subMenuItem in menuItem.subMenu" id="submenu-item-{{subMenuItem.id}}" ng-show="menuItem.showSubMenu" ng-class="{'sub-menu': true}" >
+                                <ion-item ng-repeat="subMenuItem in menuItem.subMenu" id="submenu-item-{{subMenuItem.id}}"
+                                          ng-show="menuItem.showSubMenu" ng-class="{'sub-menu': true}" >
                                     <!--Don't use menu-close instead of menu-toggle because it clears the state history-->
                                     <i ng-click="openEditAppSettingsModal('menu', subMenuItem)" class="{{subMenuItem.icon}}" menu-toggle>&nbsp; {{subMenuItem.title}}</i>
-                                    &nbsp&nbsp<i ng-click="openEditAppSettingsModal('menu', subMenuItem)" ><i class="icon ion-edit"></i></i>
-                                    &nbsp&nbsp<i ng-click="addAppComponentElement('menu', subMenuItem)" class="icon ion-ios-copy-outline" ></i>
-                                    &nbsp&nbsp<i ng-click="deleteAppComponentElement('menu', subMenuItem)" class="icon ion-trash-a" ></i>
+                                    &nbsp&nbsp
+                                    <i ng-click="openEditAppSettingsModal('menu', menuItem)" class="icon ion-edit">
+                                        <md-tooltip>Edit Menu Item</md-tooltip>
+                                    </i>
+                                    &nbsp&nbsp
+                                    <i ng-click="addAppComponentElement('menu', menuItem)" class="icon ion-ios-copy-outline" >
+                                        <md-tooltip>Duplicate Menu Item</md-tooltip>
+                                    </i>
+                                    &nbsp&nbsp
+                                    <i ng-click="deleteAppComponentElement('menu', menuItem)" class="icon ion-trash-a" >
+                                        <md-tooltip>Delete Menu Item</md-tooltip>
+                                    </i>
                                 </ion-item>
                             </div>
                         </ion-list>
@@ -85,7 +107,6 @@
                                     </md-switch>
                                 </div>
                             </div>
-
                         </md-card-content>
                     </md-card>
                 </div>
