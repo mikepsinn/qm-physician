@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "echo \"QM-Docker package.json installed! Run bower install --allow-root --quiet and gulp default now!\"",
+    "postinstall": "cd src/ionic && yarn install",
     "heroku-prebuild": "echo This runs before Heroku installs your dependencies.",
     "heroku-postbuild": "echo Done installing package.json dependencies && bower install --allow-root --quiet && gulp default"
   },

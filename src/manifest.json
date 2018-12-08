@@ -7,7 +7,7 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "img/icons/icon_512.png",
+      "src": "ionic/src/img/icons/icon_512.png",
       "sizes": "5121x512",
       "type": "image/png"
     }
