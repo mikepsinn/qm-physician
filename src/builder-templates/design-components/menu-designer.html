@@ -74,8 +74,12 @@
                                 <label>Title</label>
                                 <input name="title" ng-model="appSettingObjectToEdit.title">
                             </md-input-container>
-                            <md-button class="md-fab md-avatar" aria-label="{{appSettingObjectToEdit.icon | ionIconDisplayName}}" ng-click="selectIonIcon($event, appSettingObjectToEdit)">
-                                <md-icon style="font-size: 20px;" md-font-icon="{{appSettingObjectToEdit.icon}}" class="{{appSettingObjectToEdit.icon}}"></md-icon>
+                            <md-button class="md-fab md-avatar" aria-label="{{appSettingObjectToEdit.icon | ionIconDisplayName}}"
+                                       ng-click="selectIonIcon($event, appSettingObjectToEdit)">
+                                <md-icon style="font-size: 20px;" md-font-icon="{{appSettingObjectToEdit.icon}}"
+                                         class="{{appSettingObjectToEdit.icon}}">
+
+                                </md-icon>
                             </md-button>
                             <div ng-if="!appSettingObjectToEdit.subMenu || !appSettingObjectToEdit.subMenu.length">
                                 <md-input-container id="target-state-selector">
@@ -84,7 +88,7 @@
                                         <md-option ng-value="option.name" ng-repeat="option in stateList">{{option.name | camelCaseToTitleCase}}</md-option>
                                     </md-select>
                                 </md-input-container>
-                                <div ng-if="appSettingObjectToEdit.params && appSettingObjectToEdit.params.variableCategoryName">
+                                <div ng-if="appSettingObjectToEdit.params && appSettingObjectToEdit.params.variableCategoryName !== 'undefined'">
                                     <label>Variable Category</label>
                                     <md-select ng-model="appSettingObjectToEdit.params.variableCategoryName" ng-change="updateHrefInMenuItem(appSettingObjectToEdit)">
                                         <md-option ng-value="option" ng-repeat="option in variableCategoryNames" >
