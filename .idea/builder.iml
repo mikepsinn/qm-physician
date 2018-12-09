@@ -6,10 +6,12 @@
       <excludeFolder url="file://$MODULE_DIR$/src/ionic/dist" />
       <excludeFolder url="file://$MODULE_DIR$/src/ionic/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/src/ionic/plugins/cordova-plugin-crosswalk-webview/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/src/ionic/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/src/ionic/www" />
       <excludeFolder url="file://$MODULE_DIR$/src/templates" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/www" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
