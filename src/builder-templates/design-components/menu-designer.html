@@ -10,7 +10,7 @@
 <div layout="column">
     <md-content flex layout layout-align="center">
         <div layout-gt-sm flex flex-gt-sm="100" layout="row">
-            <div id="menu-preview" style="max-width: 400px; min-width: 350px;" flex>
+            <div id="menu-preview" style="max-width: 400px; min-width: 400px;" flex>
                 <md-card>
                     <md-card-content>
                         <ion-list id="menu-list">
@@ -33,8 +33,12 @@
                                         <md-tooltip>Delete Menu Item</md-tooltip>
                                     </i>
                                     &nbsp&nbsp
-                                    <i ng-click="menu.addSubMenuItem(menuItem)" class="icon ion-plus" >
-                                        <md-tooltip>Add Sub-Menu Item</md-tooltip>
+                                    <i ng-click="menu.moveMenuItemUp(appSettings.appDesign.menu.active, $index)" class="icon ion-android-arrow-dropup-circle" >
+                                        <md-tooltip>Move Up</md-tooltip>
+                                    </i>
+                                    &nbsp&nbsp
+                                    <i ng-click="menu.moveMenuItemDown(appSettings.appDesign.menu.active, $index)" class="icon ion-android-arrow-dropdown-circle" >
+                                        <md-tooltip>Move Down</md-tooltip>
                                     </i>
                                 </ion-item>
                                 <ion-item ng-repeat="subMenuItem in menuItem.subMenu" id="submenu-item-{{subMenuItem.id}}"
@@ -54,6 +58,14 @@
                                     &nbsp&nbsp
                                     <i ng-click="deleteAppComponentElement('menu', subMenuItem)" class="icon ion-trash-a" >
                                         <md-tooltip>Delete Sub-Menu Item</md-tooltip>
+                                    </i>
+                                    &nbsp&nbsp
+                                    <i ng-click="menu.moveMenuItemUp(menuItem.subMenu, $index)" class="icon ion-android-arrow-dropup-circle" >
+                                        <md-tooltip>Move Up</md-tooltip>
+                                    </i>
+                                    &nbsp&nbsp
+                                    <i ng-click="menu.moveMenuItemDown(menuItem.subMenu, $index)" class="icon ion-android-arrow-dropdown-circle" >
+                                        <md-tooltip>Move Down</md-tooltip>
                                     </i>
                                 </ion-item>
                             </div>

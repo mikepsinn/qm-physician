@@ -7,7 +7,13 @@ angular.module('starter').controller('ConfigurationCtrl', function( $state, $sco
         clientId: getClientId()
     };
     $scope.menu = {
-        addSubMenuItem: configurationService.menu.addSubMenuItem
+        addSubMenuItem: configurationService.menu.addSubMenuItem,
+        moveMenuItemDown: function (menuItems, oldIndex) {
+            qm.builder.menu.moveMenuItemDown(menuItems, oldIndex)
+        },
+        moveMenuItemUp: function (menuItems, oldIndex) {
+            qm.builder.menu.moveMenuItemUp(menuItems, oldIndex)
+        }
     };
     $scope.typeOf = function(value){
         return typeof value;

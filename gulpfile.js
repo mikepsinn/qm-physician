@@ -1,14 +1,17 @@
+var clean = require('./src/ionic/node_modules/gulp-rimraf');
 var fs = require('fs');
 var pathToModo = './src/ionic';
 var bugsnag = require("./src/ionic/node_modules/bugsnag");
 var gulp = require('gulp');
 var runSequence = require('./src/ionic/node_modules/run-sequence').use(gulp);
 var qm = require('./src/ionic/src/js/qmHelpers');
+qm.clean = clean;
+qm.gulp = gulp;
 qm.appMode.mode = 'testing';
 var qmLog = require('./src/ionic/src/js/qmLogger');
 qmLog.qm = qm;
 qmLog.color = require('ansi-colors');
-qm.Quantimodo = require('./../node_modules/quantimodo');
+qm.Quantimodo = require('./src/ionic/node_modules/quantimodo');
 qm.staticData = false;
 qm.qmLog = qmLog;
 qm.qmLog.setLogLevelName(process.env.LOG_LEVEL || 'info');
@@ -72,9 +75,9 @@ gulp.task('index', [], function () {
         .pipe(gulp.dest('./src'));
 });
 gulp.task('buildIonic', function (callback) {
-    execute('cd ' + pathToModo + ' && yarn install', function(){
-        execute('cd ' + pathToModo + ' && bower install', function(){
-            execute('cd ' + pathToModo + ' && gulp', function(){
+    qm.nodeHelper.execute('cd ' + pathToModo + ' && yarn install', function(){
+        qm.nodeHelper.execute('cd ' + pathToModo + ' && bower install', function(){
+            qm.nodeHelper.execute('cd ' + pathToModo + ' && gulp', function(){
                 qmLog.info("Done with buildIonic!");
                 callback();
             });
