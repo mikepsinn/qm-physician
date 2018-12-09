@@ -4,9 +4,9 @@
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="INTERPRETER_PATH" value="C:\Program Files\Git\bin\bash.exe" />
     <option name="PROJECT_INTERPRETER" value="false" />
-    <option name="WORKING_DIRECTORY" value="K:\Development\builder" />
+    <option name="WORKING_DIRECTORY" value="C:\Development\qm-api\public\dev" />
     <option name="PARENT_ENVS" value="true" />
-    <option name="SCRIPT_NAME" value="K:\Development\builder\src\ionic\scripts\git-pull-develop.sh" />
+    <option name="SCRIPT_NAME" value="C:\Development\qm-api\public\dev\src\ionic\scripts\git-pull-develop.sh" />
     <option name="PARAMETERS" value="" />
     <method v="2" />
   </configuration>
