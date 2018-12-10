@@ -1,6 +1,6 @@
-<ion-view hide-nav-bar="hideNavigationMenu">
+<ion-view hide-nav-bar="hideNavigationMenu" style="max-height: 100%">
     <ion-nav-title>{{appSettings.appDisplayName}}</ion-nav-title>
-    <ion-content ng-class="{ isBrowserView : isWeb == true }">
+    <ion-content ng-class="{ isBrowserView : isWeb == true }"  style="max-height: 100%; overflow-y: scroll;">
         <div id="patient-iframe" ng-if="patientUser" style="height: 100%; width: 100%;">
             <md-toolbar>
                 <div class="md-toolbar-tools" ng-if="patientUser">
@@ -17,7 +17,7 @@
                     frameborder="0">
             </iframe>
         </div>
-        <div id="app-builder" ng-if="!patientUser">
+        <div id="app-builder" ng-if="!patientUser"  style="max-height: 100%">
             <div ng-if="!appList" ng-cloak>
                 <br> <br>
                 <h1 style="text-align: center;">Loading your apps.. </h1>
