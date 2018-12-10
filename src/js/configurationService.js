@@ -41,22 +41,6 @@ angular.module('starter').factory('configurationService', function($http, $q, $r
                 parentMenuItem.showSubMenu = true;
                 $rootScope.openEditAppSettingsModal('menu', subMenuItem);
             }
-        },
-        search: {
-            variableNameStateParamSearch: function(menuItem, ev, successHandler) {
-                qmService.showVariableSearchDialog({
-                    title: "Select Variable",
-                    helpText: "You Can Select a Default Variable for this Page",
-                    requestParams: {includePublic: true}
-                }, function (selectedVariable) {
-                    if (successHandler) {
-                        successHandler(selectedVariable);
-                    }
-                    menuItem.params.variableName = selectedVariable.name;
-                    menuItem.icon = selectedVariable.ionIcon;
-                    menuItem.title = selectedVariable.displayName;
-                }, null, ev);
-            }
         }
     };
     var menuItems = {
@@ -1185,7 +1169,7 @@ angular.module('starter').factory('configurationService', function($http, $q, $r
             var appComponent = getAppComponent(appComponentName);
             if(appComponent){
                 if(appComponentName === 'menu'){
-                    appComponent = qmService.menu.stateName.addStateNamesToOneMenu(appComponent);
+                    //appComponent = qm.menu.stateName.addStateNamesToOneMenu(appComponent);
                 }
                 $rootScope.appSettings.appDesign[appComponentName].active = appComponent;
             }

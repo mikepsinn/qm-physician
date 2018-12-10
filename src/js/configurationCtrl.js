@@ -9,10 +9,27 @@ angular.module('starter').controller('ConfigurationCtrl', function( $state, $sco
     $scope.menu = {
         addSubMenuItem: configurationService.menu.addSubMenuItem,
         moveMenuItemDown: function (menuItems, oldIndex) {
-            qm.builder.menu.moveMenuItemDown(menuItems, oldIndex)
+            qm.menu.moveMenuItemDown(menuItems, oldIndex)
         },
         moveMenuItemUp: function (menuItems, oldIndex) {
-            qm.builder.menu.moveMenuItemUp(menuItems, oldIndex)
+            qm.menu.moveMenuItemUp(menuItems, oldIndex)
+        },
+        onStateChange: qm.menu.onStateChange,
+        onParameterChange: qm.menu.onParameterChange,
+        variableNameStateParamSearch: function(menuItem, ev, successHandler) {
+            qmService.showVariableSearchDialog({
+                title: "Select Variable",
+                helpText: "You Can Select a Default Variable for this Page",
+                requestParams: {includePublic: true}
+            }, function (selectedVariable) {
+                if (successHandler) {
+                    successHandler(selectedVariable);
+                }
+                menuItem.params.variableName = selectedVariable.name;
+                menuItem.icon = selectedVariable.ionIcon;
+                menuItem.title = selectedVariable.displayName;
+                qm.menu.onParameterChange(menuItem);
+            }, null, ev);
         }
     };
     $scope.typeOf = function(value){
@@ -382,18 +399,6 @@ angular.module('starter').controller('ConfigurationCtrl', function( $state, $sco
             }
         }
     };
-    $scope.updateHrefInMenuItem = function(menuItem){
-        qmLog.info("changed state to "+menuItem.stateName);
-        var newState = qm.staticData.states.find(function(state){
-            return state.name === menuItem.stateName;
-        });
-        menuItem = qm.objectHelper.copyPropertiesFromOneObjectToAnother(newState, menuItem, true);
-        for (var prop in newState) {
-            if (newState.hasOwnProperty(prop)) {menuItem[prop] = newState[prop];}
-        }
-        menuItem = qmService.menu.href.updateHrefAndIdInMenuItemBasedOnStateName(menuItem);
-        return menuItem;
-    };
     $scope.switchToPatientUser = function(user, newWindow){
         qmService.showBasicLoader();
         if(!user.accessToken){ // Temporary to deal with cached users without tokens
@@ -551,7 +556,6 @@ angular.module('starter').controller('ConfigurationCtrl', function( $state, $sco
         }, function() {
             $scope.status = 'You cancelled the dialog.';
         });
-    }
-    $scope.variableNameStateParamSearch = configurationService.search.variableNameStateParamSearch;
+    };
 });
 

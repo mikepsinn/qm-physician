@@ -17,8 +17,12 @@
                             <div ng-repeat="menuItem in appSettings.appDesign.menu.active" style="cursor: pointer;">
                                 <ion-item id="menu-item-{{menuItem.id + '-design'}}">
                                     <span ng-click="closeMenuIfNeeded(menuItem)">
-                                        <i ng-if="menuItem.showSubMenu && menuItem.subMenu && menuItem.subMenu.length" class="ion-chevron-down">&nbsp; {{menuItem.title}}</i>
-                                        <i ng-if="!menuItem.showSubMenu || !menuItem.subMenu || !menuItem.subMenu.length" class="{{menuItem.icon}}">&nbsp; {{menuItem.title}}</i>
+                                        <i ng-if="menuItem.showSubMenu && menuItem.subMenu && menuItem.subMenu.length" class="ion-chevron-down">
+                                            &nbsp; {{menuItem.title}}
+                                        </i>
+                                        <i ng-if="!menuItem.showSubMenu || !menuItem.subMenu || !menuItem.subMenu.length" class="{{menuItem.icon}}">
+                                            &nbsp; {{menuItem.title}}
+                                        </i>
                                     </span>
                                     &nbsp&nbsp
                                     <i ng-click="openEditAppSettingsModal('menu', menuItem)" class="icon ion-edit">
@@ -33,11 +37,13 @@
                                         <md-tooltip>Delete Menu Item</md-tooltip>
                                     </i>
                                     &nbsp&nbsp
-                                    <i ng-click="menu.moveMenuItemUp(appSettings.appDesign.menu.active, $index)" class="icon ion-android-arrow-dropup-circle" >
+                                    <i ng-click="menu.moveMenuItemUp(appSettings.appDesign.menu.active, $index)"
+                                       class="icon ion-android-arrow-dropup-circle" >
                                         <md-tooltip>Move Up</md-tooltip>
                                     </i>
                                     &nbsp&nbsp
-                                    <i ng-click="menu.moveMenuItemDown(appSettings.appDesign.menu.active, $index)" class="icon ion-android-arrow-dropdown-circle" >
+                                    <i ng-click="menu.moveMenuItemDown(appSettings.appDesign.menu.active, $index)"
+                                       class="icon ion-android-arrow-dropdown-circle" >
                                         <md-tooltip>Move Down</md-tooltip>
                                     </i>
                                 </ion-item>
@@ -96,13 +102,17 @@
                             <div ng-if="!appSettingObjectToEdit.subMenu || !appSettingObjectToEdit.subMenu.length">
                                 <md-input-container id="target-state-selector">
                                     <label>Target State</label>
-                                    <md-select ng-model="appSettingObjectToEdit.stateName" ng-change="updateHrefInMenuItem(appSettingObjectToEdit)">
-                                        <md-option ng-value="option.name" ng-repeat="option in stateList">{{option.name | camelCaseToTitleCase}}</md-option>
+                                    <md-select ng-model="appSettingObjectToEdit.stateName"
+                                               ng-change="menu.onStateChange(appSettingObjectToEdit)">
+                                        <md-option ng-value="option.name" ng-repeat="option in stateList">
+                                            {{option.name | camelCaseToTitleCase}}
+                                        </md-option>
                                     </md-select>
                                 </md-input-container>
-                                <div ng-if="appSettingObjectToEdit.params && appSettingObjectToEdit.params.variableCategoryName !== 'undefined'">
+                                <div ng-if="appSettingObjectToEdit.params && typeOf(appSettingObjectToEdit.params.variableCategoryName) !== 'undefined'">
                                     <label>Variable Category</label>
-                                    <md-select ng-model="appSettingObjectToEdit.params.variableCategoryName" ng-change="updateHrefInMenuItem(appSettingObjectToEdit)">
+                                    <md-select ng-model="appSettingObjectToEdit.params.variableCategoryName"
+                                               ng-change="menu.onParameterChange(appSettingObjectToEdit)">
                                         <md-option ng-value="option" ng-repeat="option in variableCategoryNames" >
                                             <i class="icon {{variableCategories[option].ionIcon}}"></i> &nbsp;{{option | camelCaseToTitleCase}}
                                         </md-option>
@@ -110,11 +120,13 @@
                                 </div>
                                 <div ng-if="appSettingObjectToEdit.params && typeOf(appSettingObjectToEdit.params.variableName) !== 'undefined'">
                                     <label>Variable Name</label>
-                                    <md-button ng-if="!appSettingObjectToEdit.params.variableName" ng-click="variableNameStateParamSearch(appSettingObjectToEdit, $event)"
+                                    <md-button ng-if="!appSettingObjectToEdit.params.variableName"
+                                               ng-click="menu.variableNameStateParamSearch(appSettingObjectToEdit, $event)"
                                                class="md-raised md-primary">
                                         Select Variable (Optional)
                                     </md-button>
-                                    <md-button ng-if="appSettingObjectToEdit.params.variableName" ng-click="variableNameStateParamSearch(appSettingObjectToEdit, $event)"
+                                    <md-button ng-if="appSettingObjectToEdit.params.variableName"
+                                               ng-click="menu.variableNameStateParamSearch(appSettingObjectToEdit, $event)"
                                                class="md-raised md-primary">
                                         {{appSettingObjectToEdit.params.variableName}}
                                     </md-button>
