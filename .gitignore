@@ -7,3 +7,4 @@ log/
 src/js/app.js
 src/img/
 www/
+.idea/builder.iml

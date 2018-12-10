@@ -7,6 +7,7 @@ var runSequence = require('./src/ionic/node_modules/run-sequence').use(gulp);
 var qm = require('./src/ionic/src/js/qmHelpers');
 qm.clean = clean;
 qm.gulp = gulp;
+qm.fs = fs;
 qm.appMode.mode = 'testing';
 var qmLog = require('./src/ionic/src/js/qmLogger');
 qmLog.qm = qm;
