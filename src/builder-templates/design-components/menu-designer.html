@@ -133,7 +133,9 @@
                                 </div>
                                 <div ng-if="key.indexOf('hide') !== -1" ng-repeat="(key, value) in appSettingObjectToEdit.params">
                                     <label>{{key | camelCaseToTitleCase}}</label>
-                                    <md-switch ng-model="appSettingObjectToEdit.params[key]" aria-label="{{key}}">
+                                    <md-switch ng-model="appSettingObjectToEdit.params[key]"
+                                               ng-change="menu.onParameterChange(appSettingObjectToEdit)"
+                                               aria-label="{{key}}">
                                     </md-switch>
                                 </div>
                             </div>
