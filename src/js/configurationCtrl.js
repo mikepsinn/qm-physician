@@ -37,16 +37,18 @@ angular.module('starter').controller('ConfigurationCtrl', function( $state, $sco
     });
     $scope.$on('$ionicView.afterEnter', function(e) {
         qmService.navBar.showNavigationMenu();
-        qm.integration.getIntegrationJsWithoutClientId(); // Have it ready to copy to clipboard
         setPopOutUrl();
     });
     $scope.$on('$ionicView.beforeLeave', function(e) {
         qmLog.info("Leaving configuration state!");
     });
     function setPopOutUrl(){
-        var query = '?clientId=' + getClientId() + '&apiUrl=' + qm.api.getApiUrlWithoutProtocol() + '&quantimodoAccessToken=' + qm.getUser().accessToken;
+        var query = '?clientId=' + getClientId() + '&apiUrl=' + qm.api.getApiUrlWithoutProtocol() +
+            '&quantimodoAccessToken=' + qm.getUser().accessToken;
         var url = 'https://builder.quantimo.do/#/app/configuration' + query;
-        if(!qm.windowHelper.isIframe()){url = '/ionic/Modo/www/index.html#/app/intro' + query;}
+        // Why do we need this if we can just preview in the builder?
+        //if(!qm.windowHelper.isIframe()){url = 'https://web.quantimo.do/index.html' + query;}
+        if(!qm.windowHelper.isIframe()){return;}
         qmService.rootScope.setProperty('popOutUrl', url);
     }
     function getClientId() {
