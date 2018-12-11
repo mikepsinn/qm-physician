@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="5b0aac50-41ed-498f-934a-2ffc426d1a27" name="yoga-vagrant" url="http://192.168.1.65">
+        <fileTransfer host="192.168.1.65" port="2223" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2223" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="01c7adaf-b67c-44cd-b58b-1ce08b9cb7fb" name="sonicmaster" url="http://192.168.1.245">
+        <fileTransfer host="192.168.1.245" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="bd8fd846-3747-4d13-b68e-d3adfb3f941b" name="essentials-vagrant" url="http://192.168.1.29">
+        <fileTransfer host="192.168.1.29" port="2223" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2223" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="eadc5fba-e76b-4ae7-b590-8ddbdc574521" name="pixel" url="http://192.168.1.38">
+        <fileTransfer host="192.168.1.38" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="489d337b-0525-4b00-99be-36d78e10f1fc" name="vagrant" url="https://local.quantimo.do">
+        <fileTransfer host="localhost" port="2223" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2223" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="09fdd345-1fb8-4028-a7eb-a0f9aed9370c" name="mac-osx" url="http://192.168.1.44">
+        <fileTransfer host="192.168.1.44" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="dec0ecb6-8962-4f4e-8021-e9c11c01614a" name="hp-chromebook" url="http://192.168.1.33">
+        <fileTransfer host="192.168.1.33" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="e17acafa-f4a3-41a9-bbb8-be0bcc6dd868" name="datacenter-vagrant" url="http://192.168.1.175">
+        <fileTransfer host="192.168.1.175" port="2223" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2223" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="935321ec-71cc-4bd1-afd3-62708947fed6" name="bedroom-vagrant" url="http://192.168.1.70">
+        <fileTransfer host="192.168.1.70" port="2223" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2223" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="614fcc0e-bb54-4319-8296-89a57f28bcc3" name="ibm-jenkins" url="http://169.61.123.136">
+        <fileTransfer host="169.61.123.136" port="22" privateKey="K:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="30ab622e-d981-4a5b-8f10-0bf4f70dbb95" name="ibm-mongo" url="http://169.61.123.138">
+        <fileTransfer host="169.61.123.138" port="22" privateKey="K:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="369db720-0e63-468a-a9e1-37d32a24e191" name="datacenter-root" url="http://192.168.1.175">
+        <fileTransfer host="192.168.1.175" port="2223" privateKey="C:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2223" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="7609a6f3-e2b4-4403-a705-06ebdb116f95" name="inspiron-vagrant" url="http://192.168.1.43">
+        <fileTransfer host="192.168.1.43" port="2223" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2223" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="66fa3d9c-f178-4caa-89f7-99ed2e2cb5b7" name="jenkins" url="http://192.168.1.44">
+        <fileTransfer host="192.168.1.44" port="2225" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2225" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="689f62cb-1f36-4ec0-abaf-316baae5128b" name="mysql-staging" url="http://169.61.123.133">
+        <fileTransfer host="169.61.123.133" port="22" privateKey="K:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="fb6869bb-d0a9-4b4f-bd83-b6f68597f09e" name="mysql-production" url="http://169.61.123.137">
+        <fileTransfer host="169.61.123.137" port="22" privateKey="K:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="99f6db84-f78d-4e99-8a46-b06564039619" name="studies" url="http://169.61.123.132">
+        <fileTransfer host="169.61.123.132" port="22" privateKey="K:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="5e7c8749-0e36-4556-8974-0d4f4433dc53" name="vagrant-nginx" url="http://localhost">
+        <fileTransfer host="localhost" port="2223" rootFolder="/var/log/nginx" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2223" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="45b9f831-5830-44f4-bf6a-cc842d79dcc8" name="vagrant-root" url="http://localhost">
+        <fileTransfer host="localhost" port="2223" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2223" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="8db1ad00-66b7-4c95-81f9-72e8203a2c30" name="laradock" url="https://local.quantimo.do">
+        <fileTransfer host="localhost" port="2222" privateKey="K:\Development\VVV\www\qm-api\laradock\workspace\insecure_id_rsa" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="2222" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="557cc213-7d03-418e-aeb5-6e27d2b8ebda" name="optiplex" url="http://192.168.1.12">
+        <fileTransfer host="192.168.1.12" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="e30e98d3-13ff-48fb-ad99-91290d46212b" name="aio" url="http://192.168.1.96">
+        <fileTransfer host="192.168.1.96" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="f18a77d8-af8d-4407-aa83-4edd18303901" name="000webhost" url="http://files.000webhost.com">
+        <fileTransfer host="files.000webhost.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="bfe7020e-0b29-45d2-a4f7-cae04a9e2724" name="db-production-master" url="http://169.61.123.130">
+        <fileTransfer host="169.61.123.130" port="22" privateKey="K:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="11e70d7b-da6f-4807-856e-7f8a2066b435" name="db-production-slave" url="http://169.61.123.139">
+        <fileTransfer host="169.61.123.139" port="22" privateKey="K:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="553f474d-539b-42a2-a599-ff4e6dedd622" name="db-staging-master" url="http://169.61.123.140">
+        <fileTransfer host="169.61.123.140" port="22" privateKey="K:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="a117f972-5330-4654-8e88-f370108eb056" name="db-staging-slave" url="http://169.61.123.136">
+        <fileTransfer host="169.61.123.136" port="22" privateKey="K:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="abf689cf-52be-4563-991e-93f519c0f229" name="staging-10-api" url="http://169.62.33.10">
+        <fileTransfer host="169.62.33.10" port="22" privateKey="C:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="e19f6188-75c8-46c0-8725-3b0b4b26cc64" name="staging-142-api" url="http://169.61.123.142">
+        <fileTransfer host="169.61.123.142" port="22" privateKey="C:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="24197ef0-0d23-48d3-ad21-f67c0f12009a" name="production-3-api" url="http://169.62.33.3">
+        <fileTransfer host="169.62.33.3" port="22" privateKey="C:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="f169435d-992a-4992-81e2-fe024598d4bf" name="production-8-api" url="http://169.62.33.8">
+        <fileTransfer host="169.62.33.8" port="22" privateKey="C:\Development\QM-Docker\configs\ssh-keys\ubuntu@qm-aws-20160528.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
