@@ -42,7 +42,7 @@
           <option name="port" value="2223" />
         </fileTransfer>
       </webServer>
-      <webServer id="09fdd345-1fb8-4028-a7eb-a0f9aed9370c" name="mac-osx" url="http://192.168.1.44">
+      <webServer id="09fdd345-1fb8-4028-a7eb-a0f9aed9370c" name="mac-osx (project level)" url="http://192.168.1.44">
         <fileTransfer host="192.168.1.44" port="22" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />

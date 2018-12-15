@@ -121,6 +121,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="mac-osx (project level)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="mysql-production">
         <serverdata>
           <mappings>
