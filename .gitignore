@@ -8,3 +8,5 @@ src/js/app.js
 src/img/
 www/
 .idea/builder.iml
+.idea/dev.iml
+.idea/modules.xml
