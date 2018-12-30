@@ -1538,9 +1538,11 @@ angular.module('starter').factory('configurationService', function($http, $q, $r
             configurationService.allAppSettings = null;
             deferred.resolve(response.data.appSettings);
         }, function(error){
-            //if(error && error.message){qmService.showMaterialAlert("App Creation Issue", error.message);}
-            qmLog.error(error.message);
-            deferred.reject(error.message);
+            var message = error;
+            if(typeof message !== "string"){message = error.message;}
+            if(message){qmService.showMaterialAlert("App Creation Issue", message);}
+            qmLog.error(message);
+            deferred.reject(message);
         });
         return deferred.promise;
     };
