@@ -10,3 +10,7 @@ www/
 .idea/builder.iml
 .idea/dev.iml
 .idea/modules.xml
+.idea/misc.xml
+.idea/jsLinters/jshint.xml
+.idea/vcs.xml
+.idea/inspectionProfiles/Project_Default.xml
