@@ -1311,7 +1311,11 @@ angular.module('starter').factory('configurationService', function($http, $q, $r
     $rootScope.appTypes = getValuesForSubPropertyInObjectPlusCustom($rootScope.variableCategories, 'appType');
     configurationService.replaceJsonString = function(search, replace, targetObject){
         var targetString = JSON.stringify(targetObject);
-        targetString = targetString.replace(search + ',', replace + ',').replace(search, replace).replace(',,', ',').replace('[,{', '[{');
+        targetString = targetString.replace(search + ',', replace + ',');
+        targetString = targetString.replace(search, replace);
+        targetString = targetString.replace(',,', ',');
+        targetString = targetString.replace('[,{', '[{');
+        targetString = targetString.replace('},]', '}]');
         return JSON.parse(targetString);
     };
     configurationService.deleteAppComponentElement = function(selectedComponentType, appSettingToDelete){
